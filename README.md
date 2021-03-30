@@ -1,4 +1,4 @@
-# meeting_logs
+# Gentoo Kernel team meeting logs
 Gentoo Kernel meeting logs
 
 Can also be seen at:  
