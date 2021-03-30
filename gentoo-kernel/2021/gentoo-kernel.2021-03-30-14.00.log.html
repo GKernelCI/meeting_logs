@@ -1,0 +1,419 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>#gentoo-kernel log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+a {text-decoration:none;}
+a:hover {text-decoration:underline;}
+
+</style>
+
+</head>
+
+<body>
+<pre><a href="#l-1" name="l-1"><span class="tm">14:00</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a href="#l-2" name="l-2"><span class="tm">14:00</span></a><span class="nk"> &lt;AlicefBot&gt;</span> Meeting started at 14:00:24 UTC.  The chair is alicef.  Information about MeetBot at https://github.com/GKernelCI/Gmeetbot
+<a href="#l-3" name="l-3"><span class="tm">14:00</span></a><span class="nk"> &lt;AlicefBot&gt;</span> Available commands: action, commands, idea, info, link, nick
+<a href="#l-4" name="l-4"><span class="tm">14:00</span></a><span class="nk"> &lt;kveremitz&gt;</span> I'm mostly gonna be here, but I have a plumber fixin my hot water today
+<a href="#l-5" name="l-5"><span class="tm">14:01</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="cmd">#action </span><span class="cmdline">alicef GKernelCI updates</span>
+<a name="l-6"></a><span class="tm">14:01 </span><span class="nka">* AlicefBot</span> <span class="ac">alicef GKernelCI updates</span>
+<a href="#l-7" name="l-7"><span class="tm">14:01</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">kveremitz:</span> ok
+<a href="#l-8" name="l-8"><span class="tm">14:01</span></a><span class="nk"> &lt;alicef&gt;</span> - currently because of improved testing for each linux-patch commit gkernelci became slow.
+<a href="#l-9" name="l-9"><span class="tm">14:02</span></a><span class="nk"> &lt;alicef&gt;</span> - current architecture under test amd64 (clang, gcc) arm64 arm ppc64 sparc
+<a href="#l-10" name="l-10"><span class="tm">14:02</span></a><span class="nk"> &lt;alicef&gt;</span> - GKernelCI logo approval https://bugs.gentoo.org/777972
+<a href="#l-11" name="l-11"><span class="tm">14:03</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="cmd">#vote </span><span class="cmdline">GKernelCI builded and tested genpatches can be stabilized (at least writing stable on bugzilla)?</span>
+<a href="#l-12" name="l-12"><span class="tm">14:03</span></a><span class="nk"> &lt;AlicefBot&gt;</span> Please vote on: GKernelCI builded and tested genpatches can be stabilized (at least writing stable on bugzilla)?
+<a href="#l-13" name="l-13"><span class="tm">14:03</span></a><span class="nk"> &lt;AlicefBot&gt;</span> Public votes can be registered by saying +1, -1 or +0 in channel (for private voting, private message me with 'vote +1|-1|+0 #channelname')
+<a href="#l-14" name="l-14"><span class="tm">14:04</span></a><span class="nk"> &lt;alicef&gt;</span> what's this...
+<a href="#l-15" name="l-15"><span class="tm">14:04</span></a><span class="nk"> &lt;alicef&gt;</span> whissi any idea on this ?
+<a href="#l-16" name="l-16"><span class="tm">14:04</span></a><span class="nk"> &lt;Whissi&gt;</span> Well.
+<a href="#l-17" name="l-17"><span class="tm">14:04</span></a><span class="nk"> &lt;mpagano&gt;</span> so no boot test ?
+<a href="#l-18" name="l-18"><span class="tm">14:04</span></a><span class="nk"> &lt;alicef&gt;</span> if not how we can improve it and what tests are missing ?
+<a href="#l-19" name="l-19"><span class="tm">14:05</span></a><span class="nk"> &lt;mpagano&gt;</span> I boot test every one
+<a href="#l-20" name="l-20"><span class="tm">14:05</span></a><span class="nk"> &lt;Whissi&gt;</span> When we decided to stable KV $x, we can use GKernelCI for the next steps, yes.
+<a href="#l-21" name="l-21"><span class="tm">14:05</span></a><span class="nk"> &lt;mpagano&gt;</span> usually Whissi points out major bugs we are waiting on
+<a href="#l-22" name="l-22"><span class="tm">14:05</span></a><span class="nk"> &lt;alicef&gt;</span> boot test should be ok by stabilization page if afair
+<a href="#l-23" name="l-23"><span class="tm">14:05</span></a><span class="nk"> &lt;mpagano&gt;</span> bugs reported on other distros
+<a href="#l-24" name="l-24"><span class="tm">14:05</span></a><span class="nk"> &lt;Whissi&gt;</span> But I don't see GKernelCI ready to tell us when the next version is good for stabilization
+<a href="#l-25" name="l-25"><span class="tm">14:05</span></a><span class="nk"> &lt;mpagano&gt;</span> some from our users, etc
+<a href="#l-26" name="l-26"><span class="tm">14:06</span></a><span class="nk"> &lt;Whissi&gt;</span> We still have to monitor mailing list because we have almost zero test coverage in GKernelCi
+<a href="#l-27" name="l-27"><span class="tm">14:06</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">Whissi:</span> sure, I agree
+<a href="#l-28" name="l-28"><span class="tm">14:06</span></a><span class="nk"> &lt;alicef&gt;</span> we are doing kselftest but would be nice to implement specifics test with kselftest or some other tool
+<a href="#l-29" name="l-29"><span class="tm">14:07</span></a><span class="nk"> &lt;Whissi&gt;</span> kselftest is nice to have, yes. But it never catched any serious bugs in LTS I am aware of.
+<a href="#l-30" name="l-30"><span class="tm">14:07</span></a><span class="nk"> &lt;alicef&gt;</span> but still is complicated without the device at hand
+<a href="#l-31" name="l-31"><span class="tm">14:07</span></a><span class="nk"> &lt;Whissi&gt;</span> The minimum possible suites would include xfs test suite for example
+<a href="#l-32" name="l-32"><span class="tm">14:08</span></a><span class="nk"> &lt;Whissi&gt;</span> I think BTRFS has also one
+<a href="#l-33" name="l-33"><span class="tm">14:08</span></a><span class="nk"> &lt;kveremitz&gt;</span> I don't think our automated testing framework can cover enough potential configurations to be used exclusively for stabilisation. I would like to think that upstream already performs basic testing like we are...
+<a href="#l-34" name="l-34"><span class="tm">14:08</span></a><span class="nk"> &lt;alicef&gt;</span> xfs have a specific test suite ?
+<a href="#l-35" name="l-35"><span class="tm">14:08</span></a><span class="nk"> &lt;Whissi&gt;</span> Yes
+<a href="#l-36" name="l-36"><span class="tm">14:09</span></a><span class="nk"> &lt;kveremitz&gt;</span> also, we have always prided ourselves in Gentoo on testing with Real Hardware.
+<a href="#l-37" name="l-37"><span class="tm">14:09</span></a><span class="nk"> &lt;alicef&gt;</span> this one https://github.com/zfsonlinux/xfstests ?
+<a href="#l-38" name="l-38"><span class="tm">14:09</span></a><span class="nk"> &lt;Whissi&gt;</span> I still don't know if you boot a base image. In that case we could also make sure to do some stuff in user space like configuring it to check if it was able to mount an additional LUKS-encrypted partition...
+<a href="#l-39" name="l-39"><span class="tm">14:09</span></a><span class="nk"> &lt;kveremitz&gt;</span> But its a very useful baseline check to see that our patching and toolchains work correctly
+<a href="#l-40" name="l-40"><span class="tm">14:09</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">Whissi:</span> yes we boot a base image
+<a href="#l-41" name="l-41"><span class="tm">14:09</span></a><span class="nk"> &lt;alicef&gt;</span> we are hacking stage3 for rootfs
+<a href="#l-42" name="l-42"><span class="tm">14:10</span></a><span class="nk"> &lt;kveremitz&gt;</span> we can build up the rootfs/etc to incorporate more configurations
+<a href="#l-43" name="l-43"><span class="tm">14:10</span></a><span class="nk"> &lt;Whissi&gt;</span> https://git.kernel.org/pub/scm/fs/xfs/xfstests-dev.git/
+<a href="#l-44" name="l-44"><span class="tm">14:10</span></a><span class="nk"> &lt;alicef&gt;</span> luks-encrypted would be useful :)
+<a href="#l-45" name="l-45"><span class="tm">14:10</span></a><span class="nk"> &lt;alicef&gt;</span> I also use luks
+<a href="#l-46" name="l-46"><span class="tm">14:10</span></a><span class="nk"> &lt;kveremitz&gt;</span> what does the lava framework provide?
+<a href="#l-47" name="l-47"><span class="tm">14:10</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">Whissi:</span> thanks for the link
+<a href="#l-48" name="l-48"><span class="tm">14:10</span></a><span class="nk"> &lt;alicef&gt;</span> there are lava testsuite
+<a href="#l-49" name="l-49"><span class="tm">14:11</span></a><span class="nk"> &lt;alicef&gt;</span> but they need to be reimplemented for GKernelCI
+<a href="#l-50" name="l-50"><span class="tm">14:11</span></a><span class="nk"> &lt;alicef&gt;</span> https://github.com/Linaro/test-definitions/tree/master/automated/linux
+<a href="#l-51" name="l-51"><span class="tm">14:12</span></a><span class="nk"> &lt;alicef&gt;</span> I don't see xfstests-dev or luks test
+<a href="#l-52" name="l-52"><span class="tm">14:12</span></a><span class="nk"> &lt;kveremitz&gt;</span> is kselftest and lava just pre-defined tests, how can we adapt to test the things we want/need to .. ?
+<a href="#l-53" name="l-53"><span class="tm">14:13</span></a><span class="nk"> &lt;kveremitz&gt;</span> eg. luks, xfs, zfs? etc
+<a href="#l-54" name="l-54"><span class="tm">14:13</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">Whissi:</span> can I for example wrote here (https://bugs.gentoo.org/778824) what works with GKernelCI
+<a href="#l-55" name="l-55"><span class="tm">14:13</span></a><span class="nk"> &lt;kveremitz&gt;</span> <span class="hi">alicef:</span> is there a roadmap doc for GkernelCI ?
+<a href="#l-56" name="l-56"><span class="tm">14:13</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">kveremitz:</span> read kselftest documentation is really nice about how to implement new tests
+<a href="#l-57" name="l-57"><span class="tm">14:13</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">kveremitz:</span> no that's why I'm asking
+<a href="#l-58" name="l-58"><span class="tm">14:14</span></a><span class="nk"> &lt;Whissi&gt;</span> <span class="hi">alicef:</span> Sorry, I don't understand. What do want to do exactly?
+<a href="#l-59" name="l-59"><span class="tm">14:15</span></a><span class="nk"> &lt;alicef&gt;</span> like works for amd64 or some other architecture under GKernelCI?
+<a href="#l-60" name="l-60"><span class="tm">14:15</span></a><span class="nk"> &lt;alicef&gt;</span> GKernelCI tests can be used in the stabilization bug ?
+<a href="#l-61" name="l-61"><span class="tm">14:16</span></a><span class="nk"> &lt;alicef&gt;</span> I can manually write what work for GKernelCI
+<a href="#l-62" name="l-62"><span class="tm">14:16</span></a><span class="nk"> &lt;alicef&gt;</span> and what not
+<a href="#l-63" name="l-63"><span class="tm">14:16</span></a><span class="nk"> &lt;Whissi&gt;</span> Well, the question would be how we are going to use the results once we decided to go and just wait for GKCI results
+<a href="#l-64" name="l-64"><span class="tm">14:17</span></a><span class="nk"> &lt;kveremitz&gt;</span> <span class="hi">alicef:</span> are you proposing filing automated bugs for kernelCI runs? I don't see how the stabilisation bugs can be integrated?
+<a href="#l-65" name="l-65"><span class="tm">14:17</span></a><span class="nk"> &lt;alicef&gt;</span> if could be useful
+<a href="#l-66" name="l-66"><span class="tm">14:17</span></a><span class="nk"> &lt;Whissi&gt;</span> Like GKCI could create commit scripts in tatt style
+<a href="#l-67" name="l-67"><span class="tm">14:17</span></a><span class="nk"> &lt;Whissi&gt;</span> Just post to bugs and we pick up and do the commit..
+<a href="#l-68" name="l-68"><span class="tm">14:17</span></a><span class="nk"> &lt;alicef&gt;</span> yes that would be nice
+<a href="#l-69" name="l-69"><span class="tm">14:18</span></a><span class="nk"> &lt;kveremitz&gt;</span> it would be good to file bugs with upstream test results potentially, so there is one source in Gentoo to check results?
+<a href="#l-70" name="l-70"><span class="tm">14:18</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">kveremitz:</span> we are already doing that with kcidb -&gt; kernelci
+<a href="#l-71" name="l-71"><span class="tm">14:20</span></a><span class="nk"> &lt;kveremitz&gt;</span> err.. file Gentoo bugs with upstream test results. Was what I meant :D
+<a href="#l-72" name="l-72"><span class="tm">14:20</span></a><span class="nk"> &lt;kveremitz&gt;</span> to combine data sources
+<a href="#l-73" name="l-73"><span class="tm">14:20</span></a><span class="nk"> &lt;kveremitz&gt;</span> eg. from other distros
+<a href="#l-74" name="l-74"><span class="tm">14:20</span></a><span class="nk"> &lt;Whissi&gt;</span> Wait, I am not sure if we all are talking about the same at the moment :D
+<a href="#l-75" name="l-75"><span class="tm">14:21</span></a><span class="nk"> &lt;Whissi&gt;</span> Let me recap
+<a href="#l-76" name="l-76"><span class="tm">14:21</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">kveremitz:</span> yes that is what kernelci is currently working on
+<a href="#l-77" name="l-77"><span class="tm">14:21</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">Whissi:</span> thanks
+<a href="#l-78" name="l-78"><span class="tm">14:21</span></a><span class="nk"> &lt;kveremitz&gt;</span> sorry .. I'm probably crossing wires..
+<a href="#l-79" name="l-79"><span class="tm">14:21</span></a><span class="nk"> &lt;Whissi&gt;</span> For now, GKernelCI won't do anything on its own.
+<a href="#l-80" name="l-80"><span class="tm">14:21</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">kveremitz:</span> we are going bit off topic
+<a href="#l-81" name="l-81"><span class="tm">14:21</span></a><span class="nk"> &lt;Whissi&gt;</span> Once we decided to stabilize linux-5.10.27 for example
+<a href="#l-82" name="l-82"><span class="tm">14:21</span></a><span class="nk"> &lt;Whissi&gt;</span> because we (humans :p) haven't found any blocking stuff
+<a href="#l-83" name="l-83"><span class="tm">14:22</span></a><span class="nk"> &lt;Whissi&gt;</span> We will do the stabilization bug like we do it all the time
+<a href="#l-84" name="l-84"><span class="tm">14:22</span></a><span class="nk"> &lt;kveremitz&gt;</span> ^ agreed so far :D
+<a href="#l-85" name="l-85"><span class="tm">14:22</span></a><span class="nk"> &lt;Whissi&gt;</span> But in addition, based on CI results, we can mark gentoo-sources stable on our own
+<a href="#l-86" name="l-86"><span class="tm">14:22</span></a><span class="nk"> &lt;Whissi&gt;</span> (after we started normal stabilization)
+<a href="#l-87" name="l-87"><span class="tm">14:22</span></a><span class="nk"> &lt;mpagano&gt;</span> that I like
+<a href="#l-88" name="l-88"><span class="tm">14:24</span></a><span class="nk"> &lt;kveremitz&gt;</span> hmm.. are you implying a parallel process?
+<a href="#l-89" name="l-89"><span class="tm">14:24</span></a><span class="nk"> &lt;kveremitz&gt;</span> and is this a 'global' or 'local' stabilisation 'flag'?
+<a href="#l-90" name="l-90"><span class="tm">14:24</span></a><span class="nk"> &lt;alicef&gt;</span> if we can do xfstest-dev and luks encryption test, how the workflow would be improved ?
+<a href="#l-91" name="l-91"><span class="tm">14:26</span></a><span class="nk"> &lt;Whissi&gt;</span> I don't think that this will really affect the workflow. It will only give us more confidence.
+<a href="#l-92" name="l-92"><span class="tm">14:26</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">Whissi:</span> ok
+<a href="#l-93" name="l-93"><span class="tm">14:26</span></a><span class="nk"> &lt;alicef&gt;</span> +1 for whissi workflow
+<a href="#l-94" name="l-94"><span class="tm">14:26</span></a><span class="nk"> &lt;AlicefBot&gt;</span> +1 for whissi workflow received from alicef
+<a href="#l-95" name="l-95"><span class="tm">14:27</span></a><span class="nk"> &lt;alicef&gt;</span> any other vote ?
+<a href="#l-96" name="l-96"><span class="tm">14:28</span></a><span class="nk"> &lt;mpagano&gt;</span> +1
+<a href="#l-97" name="l-97"><span class="tm">14:28</span></a><span class="nk"> &lt;AlicefBot&gt;</span> +1 received from mpagano
+<a href="#l-98" name="l-98"><span class="tm">14:28</span></a><span class="nk"> &lt;mpagano&gt;</span> +1 for mpagano
+<a href="#l-99" name="l-99"><span class="tm">14:28</span></a><span class="nk"> &lt;AlicefBot&gt;</span> +1 for mpagano received from mpagano
+<a href="#l-100" name="l-100"><span class="tm">14:28</span></a><span class="nk"> &lt;kveremitz&gt;</span> from what I am seeing/reading.. there is no change here, process stays the same, but when doing [manual] stabilisations, we can verify GkernelCI results .. right?
+<a href="#l-101" name="l-101"><span class="tm">14:28</span></a><span class="nk"> &lt;mpagano&gt;</span> nice
+<a href="#l-102" name="l-102"><span class="tm">14:28</span></a><span class="nk"> &lt;Whissi&gt;</span> We maybe need to talk about our long term goal regarding fully automatization.
+<a href="#l-103" name="l-103"><span class="tm">14:29</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">Whissi:</span> yes
+<a href="#l-104" name="l-104"><span class="tm">14:29</span></a><span class="nk"> &lt;kveremitz&gt;</span> <span class="hi">Whissi:</span> hence my question about a Roadmap (this being the normal process for establishing and tracking goals)
+<a href="#l-105" name="l-105"><span class="tm">14:29</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">Whissi:</span> also you can open isssues on gkernelci or gentoo bugs about gkernelci
+<a href="#l-106" name="l-106"><span class="tm">14:29</span></a><span class="nk"> &lt;Whissi&gt;</span> My problem is that we don't test on real hardware. While anything we test would be an improvement already vs status quo, we still don't run kernels on real hardware.
+<a href="#l-107" name="l-107"><span class="tm">14:29</span></a><span class="nk"> &lt;Whissi&gt;</span> So we will not test real hardware issues.
+<a href="#l-108" name="l-108"><span class="tm">14:30</span></a><span class="nk"> &lt;Whissi&gt;</span> And the blockers for 5.10 stabilization for example were all i915 and AMD graphics
+<a href="#l-109" name="l-109"><span class="tm">14:30</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">Whissi:</span> I would be happy to have some sponsored real hardware machine :D
+<a href="#l-110" name="l-110"><span class="tm">14:30</span></a><span class="nk"> &lt;kveremitz&gt;</span> aye, recent issues have been graphics, ^ and networking
+<a href="#l-111" name="l-111"><span class="tm">14:31</span></a><span class="nk"> &lt;alicef&gt;</span> they should be not complicated to implement the testing part with lava
+<a href="#l-112" name="l-112"><span class="tm">14:32</span></a><span class="nk"> &lt;Whissi&gt;</span> But how would that work?
+<a href="#l-113" name="l-113"><span class="tm">14:32</span></a><span class="nk"> &lt;montjoie&gt;</span> (being late) I have already LAVA tests for luks
+<a href="#l-114" name="l-114"><span class="tm">14:32</span></a><span class="nk"> &lt;alicef&gt;</span> so if you have some machine that is similar to a production machine that you want to test
+<a href="#l-115" name="l-115"><span class="tm">14:32</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">montjoie:</span> nice !
+<a href="#l-116" name="l-116"><span class="tm">14:33</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">montjoie:</span> how would work implementing real hardware for testing with lava ?
+<a href="#l-117" name="l-117"><span class="tm">14:33</span></a><span class="nk"> &lt;montjoie&gt;</span> I dont understand the question. you mean does it is possible ? or howto ?
+<a href="#l-118" name="l-118"><span class="tm">14:33</span></a><span class="nk"> &lt;Whissi&gt;</span> At work I have created some PXE setups... i.e. these systems will pull in everything needed to boot via network. When a reboot is triggered we have a timer... when the system won't come up until timeout is reached, we assume failure.
+<a href="#l-119" name="l-119"><span class="tm">14:34</span></a><span class="nk"> &lt;kveremitz&gt;</span> <span class="hi">Whissi:</span> that sounds useful
+<a href="#l-120" name="l-120"><span class="tm">14:34</span></a><span class="nk"> &lt;montjoie&gt;</span> real hardware is possible (it is what kernelci do)
+<a href="#l-121" name="l-121"><span class="tm">14:34</span></a><span class="nk"> &lt;Whissi&gt;</span> In our case we are using Dell hardware where we can access iDRAC remotely for stuff like power cycle.
+<a href="#l-122" name="l-122"><span class="tm">14:34</span></a><span class="nk"> &lt;montjoie&gt;</span> for x86 I have already some board in LAVA
+<a href="#l-123" name="l-123"><span class="tm">14:34</span></a><span class="nk"> &lt;alicef&gt;</span> yes
+<a href="#l-124" name="l-124"><span class="tm">14:34</span></a><span class="nk"> &lt;kveremitz&gt;</span> how can we integrate this/these systems with GkernelCI ?
+<a href="#l-125" name="l-125"><span class="tm">14:35</span></a><span class="nk"> &lt;Whissi&gt;</span> But I am not sure if this will help us to detect i915 failures for example.
+<a href="#l-126" name="l-126"><span class="tm">14:35</span></a><span class="nk"> &lt;montjoie&gt;</span> you just have to generate a LAVA job
+<a href="#l-127" name="l-127"><span class="tm">14:35</span></a><span class="nk"> &lt;montjoie&gt;</span> my x86 has a i915, point me to a kernel failure and I can try to reproduce
+<a href="#l-128" name="l-128"><span class="tm">14:36</span></a><span class="nk"> &lt;alicef&gt;</span> should be like adding devices for different servers
+<a href="#l-129" name="l-129"><span class="tm">14:36</span></a><span class="nk"> &lt;alicef&gt;</span> something like this https://lava.ciplatform.org/scheduler/alldevices
+<a href="#l-130" name="l-130"><span class="tm">14:37</span></a><span class="nk"> &lt;Whissi&gt;</span> <span class="hi">montjoie:</span> See the "[Intel-gfx] [5.10.y regression] i915 clear-residuals mitigation is causing gfx issues" thread
+<a href="#l-131" name="l-131"><span class="tm">14:37</span></a><span class="nk"> &lt;kveremitz&gt;</span> sounds promising
+<a href="#l-132" name="l-132"><span class="tm">14:37</span></a><span class="nk"> &lt;kveremitz&gt;</span> I thought this was the idea of Lava :)
+<a href="#l-133" name="l-133"><span class="tm">14:37</span></a><span class="nk"> &lt;Whissi&gt;</span> I am not that familiar with LAVA, wondering how LAVA should detect something like that.
+<a href="#l-134" name="l-134"><span class="tm">14:37</span></a><span class="nk"> &lt;montjoie&gt;</span> the only problem in x86 is that pxe is not ~~~reliable for console output
+<a href="#l-135" name="l-135"><span class="tm">14:37</span></a><span class="nk"> &lt;montjoie&gt;</span> I hit many big problem
+<a href="#l-136" name="l-136"><span class="tm">14:38</span></a><span class="nk"> &lt;kveremitz&gt;</span> true .. that's where a BMC/etc would be more useful
+<a href="#l-137" name="l-137"><span class="tm">14:38</span></a><span class="nk"> &lt;kveremitz&gt;</span> wrt remote consoles
+<a href="#l-138" name="l-138"><span class="tm">14:38</span></a><span class="nk"> &lt;montjoie&gt;</span> for example my x86 send s..t to console so... I have a kernel which boot a rootfs, and init is a fake grub shell
+<a href="#l-139" name="l-139"><span class="tm">14:38</span></a><span class="nk"> &lt;kveremitz&gt;</span> Lava should have handling for that .. although it might not
+<a href="#l-140" name="l-140"><span class="tm">14:38</span></a><span class="nk"> &lt;montjoie&gt;</span> then it kexecto final kernel
+<a href="#l-141" name="l-141"><span class="tm">14:38</span></a><span class="nk"> &lt;kveremitz&gt;</span> oof yuk
+<a href="#l-142" name="l-142"><span class="tm">14:38</span></a><span class="nk"> &lt;montjoie&gt;</span> result is 100% stable
+<a href="#l-143" name="l-143"><span class="tm">14:39</span></a><span class="nk"> &lt;montjoie&gt;</span> stable since you use kernel console and not pxe one
+<a href="#l-144" name="l-144"><span class="tm">14:39</span></a><span class="nk"> &lt;kveremitz&gt;</span> stable+reliable is good
+<a href="#l-145" name="l-145"><span class="tm">14:39</span></a><span class="nk"> &lt;montjoie&gt;</span> for CI you NEED reliable
+<a href="#l-146" name="l-146"><span class="tm">14:39</span></a><span class="nk"> &lt;kveremitz&gt;</span> reproducible+consistent, even better :D
+<a href="#l-147" name="l-147"><span class="tm">14:39</span></a><span class="nk"> &lt;kveremitz&gt;</span> right
+<a href="#l-148" name="l-148"><span class="tm">14:39</span></a><span class="nk"> &lt;montjoie&gt;</span> you can deploy this everywhere, I do the same for some shitty ARM board
+<a href="#l-149" name="l-149"><span class="tm">14:39</span></a><span class="nk"> &lt;montjoie&gt;</span> but it is uboot fake in that case
+<a href="#l-150" name="l-150"><span class="tm">14:40</span></a><span class="nk"> &lt;kveremitz&gt;</span> cool .. I
+<a href="#l-151" name="l-151"><span class="tm">14:40</span></a><span class="nk"> &lt;kveremitz&gt;</span> cool, I'd be interested in testing/deploying that across my different hardware also
+<a href="#l-152" name="l-152"><span class="tm">14:40</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">Whissi:</span> if you are willing to sponsor a server we could try to add it to lava workflow
+<a href="#l-153" name="l-153"><span class="tm">14:40</span></a><span class="nk"> &lt;kveremitz&gt;</span> although I won't be devising lava tests for some of the known peculiarities :D
+<a href="#l-154" name="l-154"><span class="tm">14:41</span></a><span class="nk"> &lt;montjoie&gt;</span> https://github.com/montjoie/buildroot/blob/montjoie/board/montjoie/kexec/grub/rootfs-overlay/sbin/init for details
+<a href="#l-155" name="l-155"><span class="tm">14:41</span></a><span class="nk"> &lt;kveremitz&gt;</span> *bookmarked*
+<a href="#l-156" name="l-156"><span class="tm">14:41</span></a><span class="nk"> &lt;Whissi&gt;</span> heh, sadly, not possible for me.
+<a href="#l-157" name="l-157"><span class="tm">14:41</span></a><span class="nk"> &lt;Whissi&gt;</span> But we maybe able to ask foundation to do that...
+<a href="#l-158" name="l-158"><span class="tm">14:41</span></a><span class="nk"> &lt;Whissi&gt;</span> Doesn't have to be a beefy server
+<a href="#l-159" name="l-159"><span class="tm">14:41</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">Whissi:</span> sure
+<a href="#l-160" name="l-160"><span class="tm">14:41</span></a><span class="nk"> &lt;Whissi&gt;</span> Just a Dell system with proper iDRAC...
+<a href="#l-161" name="l-161"><span class="tm">14:42</span></a><span class="nk"> &lt;alicef&gt;</span> I don't know what server you want to test
+<a href="#l-162" name="l-162"><span class="tm">14:42</span></a><span class="nk"> &lt;kveremitz&gt;</span> I'm sure foundation has toasters :D heh. OSUOSL might be able to help out .. worth asking Ramereth in the channel
+<a href="#l-163" name="l-163"><span class="tm">14:42</span></a><span class="nk"> &lt;alicef&gt;</span> if you give me some specs I can try to ask to foundation
+<a href="#l-164" name="l-164"><span class="tm">14:42</span></a><span class="nk"> &lt;kveremitz&gt;</span> .. #osuosl
+<a href="#l-165" name="l-165"><span class="tm">14:42</span></a><span class="nk"> &lt;alicef&gt;</span> a dell system with iDrac
+<a href="#l-166" name="l-166"><span class="tm">14:43</span></a><span class="nk"> &lt;juippis&gt;</span> I've got some old HP proliant rack computer from 2011-2012 under my bed if that's use for anyone :P
+<a href="#l-167" name="l-167"><span class="tm">14:43</span></a><span class="nk"> &lt;alicef&gt;</span> also infra would be better to have testing enviroments
+<a href="#l-168" name="l-168"><span class="tm">14:43</span></a><span class="nk"> &lt;Whissi&gt;</span> Before we are asking for money/donation it would be cool if we have a working PoC in a lab or something. Would be a shame if we ask for something which we would be unable to use in the end.
+<a href="#l-169" name="l-169"><span class="tm">14:43</span></a><span class="nk"> &lt;montjoie&gt;</span> just for finish the solution, I use a power switch, a energenie-USB (~40€)
+<a href="#l-170" name="l-170"><span class="tm">14:43</span></a><span class="nk"> &lt;kveremitz&gt;</span> <span class="hi">Whissi:</span> +1
+<a href="#l-171" name="l-171"><span class="tm">14:43</span></a><span class="nk"> &lt;juippis&gt;</span> I can also visit hetzner in finland if you got foundation funding to place something in there
+<a href="#l-172" name="l-172"><span class="tm">14:44</span></a><span class="nk"> &lt;kveremitz&gt;</span> <span class="hi">juippis:</span> +1.. I also have a ProLiant with its .. thing.
+<a href="#l-173" name="l-173"><span class="tm">14:44</span></a><span class="nk"> &lt;alicef&gt;</span> anyway for now whissi can you vote on the workflow you proposed ?
+<a href="#l-174" name="l-174"><span class="tm">14:44</span></a><span class="nk"> &lt;kveremitz&gt;</span> iLo is HP
+<a href="#l-175" name="l-175"><span class="tm">14:45</span></a><span class="nk"> &lt;kveremitz&gt;</span> https://www.hpe.com/us/en/servers/integrated-lights-out-ilo.html and Dell is https://www.delltechnologies.com/en-gb/solutions/openmanage/idrac.htm for ref.
+<a href="#l-176" name="l-176"><span class="tm">14:45</span></a><span class="nk"> &lt;kveremitz&gt;</span> same principle
+<a href="#l-177" name="l-177"><span class="tm">14:45</span></a><span class="nk"> &lt;alicef&gt;</span> and I will try to close the vote
+<a href="#l-178" name="l-178"><span class="tm">14:45</span></a><span class="nk"> &lt;Whissi&gt;</span> +1 for whissi workflow
+<a href="#l-179" name="l-179"><span class="tm">14:45</span></a><span class="nk"> &lt;AlicefBot&gt;</span> +1 for whissi workflow received from Whissi
+<a href="#l-180" name="l-180"><span class="tm">14:46</span></a><span class="nk"> &lt;kveremitz&gt;</span> <span class="cmd">#votes</span><span class="cmdline"></span>
+<a href="#l-181" name="l-181"><span class="tm">14:46</span></a><span class="nk"> &lt;kveremitz&gt;</span> heh
+<a href="#l-182" name="l-182"><span class="tm">14:46</span></a><span class="nk"> &lt;montjoie&gt;</span> <span class="hi">Whissi:</span> I see your link, but does this can be tested automatacly ?
+<a href="#l-183" name="l-183"><span class="tm">14:46</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="cmd">#agree </span><span class="cmdline">on whissi workflow</span>
+<a href="#l-184" name="l-184"><span class="tm">14:46</span></a><span class="nk"> &lt;AlicefBot&gt;</span> <span class="hi">AGREED:</span> on whissi workflow
+<a href="#l-185" name="l-185"><span class="tm">14:46</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="cmd">#voted</span><span class="cmdline"></span>
+<a href="#l-186" name="l-186"><span class="tm">14:47</span></a><span class="nk"> &lt;Whissi&gt;</span> <span class="hi">montjoie:</span> Which link? I posted multiple links ;)
+<a href="#l-187" name="l-187"><span class="tm">14:47</span></a><span class="nk"> &lt;montjoie&gt;</span> [Intel-gfx] [5.10.y regression] i915 clear-residuals mitigation is causing gfx issues" thread
+<a href="#l-188" name="l-188"><span class="tm">14:47</span></a><span class="nk"> &lt;kveremitz&gt;</span> heh I have one of those for my router/modem (usb power switch) attached to a rpi :D
+<a href="#l-189" name="l-189"><span class="tm">14:48</span></a><span class="nk"> &lt;Whissi&gt;</span> <span class="hi">montjoie:</span> Well, that's actually my question...
+<a href="#l-190" name="l-190"><span class="tm">14:48</span></a><span class="nk"> &lt;montjoie&gt;</span> time to create an issue to dig this
+<a href="#l-191" name="l-191"><span class="tm">14:48</span></a><span class="nk"> &lt;kveremitz&gt;</span> good idea +1
+<a href="#l-192" name="l-192"><span class="tm">14:49</span></a><span class="nk"> &lt;montjoie&gt;</span> <span class="hi">alicef:</span> any place where i915, luks etc test related issue should be created ? ghelper probably since it own the lava generate stuff right ?
+<a href="#l-193" name="l-193"><span class="tm">14:50</span></a><span class="nk"> &lt;alicef&gt;</span> ghelper is ok
+<a href="#l-194" name="l-194"><span class="tm">14:50</span></a><span class="nk"> &lt;alicef&gt;</span> in any case all issues get into the main project folder
+<a href="#l-195" name="l-195"><span class="tm">14:50</span></a><span class="nk"> &lt;alicef&gt;</span> so it dosen't matter too much where you open the issue
+<a href="#l-196" name="l-196"><span class="tm">14:51</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">montjoie:</span> -&gt; https://github.com/orgs/GKernelCI/projects/2
+<a href="#l-197" name="l-197"><span class="tm">14:51</span></a><span class="nk"> &lt;kveremitz&gt;</span> 👍
+<a href="#l-198" name="l-198"><span class="tm">14:52</span></a><span class="nk"> &lt;alicef&gt;</span> the only repository that dosen't catch is the gmeetbot probably
+<a href="#l-199" name="l-199"><span class="tm">14:53</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="cmd">#vote </span><span class="cmdline">everyone ok with the GKernelCI logo https://bugs.gentoo.org/777972 ?</span>
+<a href="#l-200" name="l-200"><span class="tm">14:53</span></a><span class="nk"> &lt;AlicefBot&gt;</span> Voting still open on: GKernelCI builded and tested genpatches can be stabilized (at least writing stable on bugzilla)?
+<a href="#l-201" name="l-201"><span class="tm">14:53</span></a><span class="nk"> &lt;alicef&gt;</span> +1
+<a href="#l-202" name="l-202"><span class="tm">14:53</span></a><span class="nk"> &lt;AlicefBot&gt;</span> +1 received from alicef
+<a href="#l-203" name="l-203"><span class="tm">14:54</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">mpagano:</span> Whissi  ?
+<a href="#l-204" name="l-204"><span class="tm">14:55</span></a><span class="nk"> &lt;Whissi&gt;</span> +1
+<a href="#l-205" name="l-205"><span class="tm">14:55</span></a><span class="nk"> &lt;AlicefBot&gt;</span> +1 received from Whissi
+<a href="#l-206" name="l-206"><span class="tm">14:55</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">mpagano:</span> ?
+<a href="#l-207" name="l-207"><span class="tm">14:56</span></a><span class="nk"> &lt;mpagano&gt;</span> +1
+<a href="#l-208" name="l-208"><span class="tm">14:56</span></a><span class="nk"> &lt;AlicefBot&gt;</span> +1 received from mpagano
+<a href="#l-209" name="l-209"><span class="tm">14:56</span></a><span class="nk"> &lt;mpagano&gt;</span> that would be great for me
+<a href="#l-210" name="l-210"><span class="tm">14:56</span></a><span class="nk"> &lt;alicef&gt;</span> we can close the discussion on gkernelci ?
+<a href="#l-211" name="l-211"><span class="tm">14:57</span></a><span class="nk"> &lt;montjoie&gt;</span> <span class="hi">Whissi:</span> https://drm.pages.freedesktop.org/igt-gpu-tools/igt-i915-tests.html :D
+<a href="#l-212" name="l-212"><span class="tm">14:57</span></a><span class="nk"> &lt;alicef&gt;</span> montjoie+1
+<a href="#l-213" name="l-213"><span class="tm">14:57</span></a><span class="nk"> &lt;alicef&gt;</span> montjoie +1
+<a href="#l-214" name="l-214"><span class="tm">14:57</span></a><span class="nk"> &lt;alicef&gt;</span> thanks!
+<a href="#l-215" name="l-215"><span class="tm">14:57</span></a><span class="nk"> &lt;Whissi&gt;</span> <span class="hi">montjoie:</span> Sure but I don't know if it would catch the reported problem ;)
+<a href="#l-216" name="l-216"><span class="tm">14:57</span></a><span class="nk"> &lt;montjoie&gt;</span> <span class="hi">kveremitz:</span> https://storage.kernelci.org/mainline/master/v5.12-rc5/x86_64/x86_64_defconfig/gcc-8/lab-clabbe/baseline-d2500cc.html log of grubfake solution
+<a href="#l-217" name="l-217"><span class="tm">14:58</span></a><span class="nk"> &lt;montjoie&gt;</span> <span class="hi">Whissi:</span> I will try
+<a href="#l-218" name="l-218"><span class="tm">14:58</span></a><span class="nk"> &lt;Whissi&gt;</span> Cool, thanks
+<a href="#l-219" name="l-219"><span class="tm">14:58</span></a><span class="nk"> &lt;alicef&gt;</span> if there are no other dicussion topic for gkernelci, let's move to eapi 7
+<a href="#l-220" name="l-220"><span class="tm">14:59</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="cmd">#action </span><span class="cmdline">whissi EAPI 7</span>
+<a name="l-221"></a><span class="tm">14:59 </span><span class="nka">* AlicefBot</span> <span class="ac">whissi EAPI 7</span>
+<a href="#l-222" name="l-222"><span class="tm">14:59</span></a><span class="nk"> &lt;kveremitz&gt;</span> I like the idea of artwork approval, but can the amateur lawyers get themselves sorted out, so that this is Feasible? otherwise we can only vote on interest, not action
+<a href="#l-223" name="l-223"><span class="tm">14:59</span></a><span class="nk"> &lt;kveremitz&gt;</span> <span class="hi">montjoie:</span> thanks!
+<a href="#l-224" name="l-224"><span class="tm">15:00</span></a><span class="nk"> &lt;mpagano&gt;</span> <span class="hi">Whissi:</span> how can we help on EAPI 7
+<a href="#l-225" name="l-225"><span class="tm">15:00</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">kveremitz:</span> currently the vote is only interest, there is a discussion if is about law ok or notin another bug
+<a href="#l-226" name="l-226"><span class="tm">15:00</span></a><span class="nk"> &lt;kveremitz&gt;</span> <span class="hi">alicef:</span> ok
+<a href="#l-227" name="l-227"><span class="tm">15:00</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">Whissi:</span> how we can help?
+<a href="#l-228" name="l-228"><span class="tm">15:00</span></a><span class="nk"> &lt;kveremitz&gt;</span> I vote the legal stuff is fixed :D
+<a href="#l-229" name="l-229"><span class="tm">15:01</span></a><span class="nk"> &lt;kveremitz&gt;</span> And I vote for more artwork :D
+<a href="#l-230" name="l-230"><span class="tm">15:01</span></a><span class="nk"> &lt;kveremitz&gt;</span> <span class="topic">#topic</span><span class="topicline"></span>
+<a href="#l-231" name="l-231"><span class="tm">15:01</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">kveremitz:</span> plese don't go off topic XD
+<a href="#l-232" name="l-232"><span class="tm">15:01</span></a><span class="nk"> &lt;kveremitz&gt;</span> heh
+<a href="#l-233" name="l-233"><span class="tm">15:01</span></a><span class="nk"> &lt;Whissi&gt;</span> Well.
+<a href="#l-234" name="l-234"><span class="tm">15:02</span></a><span class="nk"> &lt;kveremitz&gt;</span> <span class="cmd">#help</span><span class="cmdline"></span>
+<a href="#l-235" name="l-235"><span class="tm">15:02</span></a><span class="nk"> &lt;kveremitz&gt;</span> what are the damn thingies LOL
+<a href="#l-236" name="l-236"><span class="tm">15:02</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">kveremitz:</span> only chair can do it
+<a href="#l-237" name="l-237"><span class="tm">15:03</span></a><span class="nk"> &lt;Whissi&gt;</span> Like said I was working on completely new EAPI 7 eclasses to get rid of all the old hacks.
+<a href="#l-238" name="l-238"><span class="tm">15:03</span></a><span class="nk"> &lt;kveremitz&gt;</span> <span class="hi">Whissi:</span> how far along are you?
+<a href="#l-239" name="l-239"><span class="tm">15:03</span></a><span class="nk"> &lt;juippis&gt;</span> "I was" and not "I am" sounds bad :I
+<a href="#l-240" name="l-240"><span class="tm">15:04</span></a><span class="nk"> &lt;Whissi&gt;</span> But I am stuck because of time. I have a working draft for basic gentoo-sources...
+<a href="#l-241" name="l-241"><span class="tm">15:04</span></a><span class="nk"> &lt;kveremitz&gt;</span> since there is a real chance Someone could commit another 'hack' to the stack to serve Their immediate purposes...
+<a href="#l-242" name="l-242"><span class="tm">15:04</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">Whissi:</span> how can we help ?
+<a href="#l-243" name="l-243"><span class="tm">15:04</span></a><span class="nk"> &lt;kveremitz&gt;</span> ^
+<a href="#l-244" name="l-244"><span class="tm">15:04</span></a><span class="nk"> &lt;Whissi&gt;</span> but it would break with some stuff.
+<a href="#l-245" name="l-245"><span class="tm">15:04</span></a><span class="nk"> &lt;juippis&gt;</span> wasn't there a proposition in the mailing list to update kernel-2.eclass with EAPI-7 compatibility?
+<a href="#l-246" name="l-246"><span class="tm">15:04</span></a><span class="nk"> &lt;juippis&gt;</span> did someone look at that?
+<a href="#l-247" name="l-247"><span class="tm">15:05</span></a><span class="nk"> &lt;dm0&gt;</span> bug #702280
+<a href="#l-248" name="l-248"><span class="tm">15:05</span></a><span class="nk"> &lt;willikins&gt;</span> <span class="hi">dm0:</span> https://bugs.gentoo.org/702280 "kernel-2.eclass: add EAPI=7 support"; Gentoo Linux, Eclasses; CONF; slyfox:kernel
+<a href="#l-249" name="l-249"><span class="tm">15:05</span></a><span class="nk"> &lt;kveremitz&gt;</span> yes, this was my point ..
+<a href="#l-250" name="l-250"><span class="tm">15:05</span></a><span class="nk"> &lt;Whissi&gt;</span> I am actually not sure if I (we) should continue that path or if we should try to migrate existing eclass to EAPI 7 following the proposed patch (which I still need to review).
+<a href="#l-251" name="l-251"><span class="tm">15:05</span></a><span class="nk"> &lt;kveremitz&gt;</span> we can continue "plastering over" problems..
+<a href="#l-252" name="l-252"><span class="tm">15:06</span></a><span class="nk"> &lt;juippis&gt;</span> <span class="hi">Whissi:</span> what are the faulty points in kernel-2.eclass you're trying to fix with new eclass?
+<a href="#l-253" name="l-253"><span class="tm">15:06</span></a><span class="nk"> &lt;sam_&gt;</span> a lot of the variables are not documented
+<a href="#l-254" name="l-254"><span class="tm">15:06</span></a><span class="nk"> &lt;kveremitz&gt;</span> I have a proposal for splitting unipatch function, which I would welcome review/feedback/patches (its horribly crude at present)
+<a href="#l-255" name="l-255"><span class="tm">15:06</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">Whissi:</span> which one is faster and reliable ?
+<a href="#l-256" name="l-256"><span class="tm">15:06</span></a><span class="nk"> &lt;kveremitz&gt;</span> unipatches at present uses the incorrect phase function(s)
+<a href="#l-257" name="l-257"><span class="tm">15:06</span></a><span class="nk"> &lt;Whissi&gt;</span> I mean, the patch looks small. I don't like the idea to keep some stuff... but when we re-invent the wheel... let's allow them to use EAPI 7 and do the other work when we have time for that. At least I won't have time for that in the next weeks.
+<a href="#l-258" name="l-258"><span class="tm">15:06</span></a><span class="nk"> &lt;Whissi&gt;</span> So faster would be reviewing patches for now
+<a href="#l-259" name="l-259"><span class="tm">15:07</span></a><span class="nk"> &lt;juippis&gt;</span> <span class="hi">kveremitz:</span> src_unpack instead of _prepare?
+<a href="#l-260" name="l-260"><span class="tm">15:07</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">Whissi:</span> I think that should be a good idea
+<a href="#l-261" name="l-261"><span class="tm">15:07</span></a><span class="nk"> &lt;kveremitz&gt;</span> what are the problems with not having EAPI-7 support for kernel ebuilds at present?
+<a href="#l-262" name="l-262"><span class="tm">15:07</span></a><span class="nk"> &lt;juippis&gt;</span> (which is hell annoying btw)
+<a href="#l-263" name="l-263"><span class="tm">15:07</span></a><span class="nk"> &lt;kveremitz&gt;</span> <span class="hi">juippis:</span> yes, basically
+<a href="#l-264" name="l-264"><span class="tm">15:08</span></a><span class="nk"> &lt;kveremitz&gt;</span> <span class="hi">juippis:</span> my version has components of unipatch in each function, for the relevant parts
+<a href="#l-265" name="l-265"><span class="tm">15:08</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">Whissi:</span> would be ok for you to review the current patches and add your work gradually ?
+<a href="#l-266" name="l-266"><span class="tm">15:09</span></a><span class="nk"> &lt;Whissi&gt;</span> yes
+<a href="#l-267" name="l-267"><span class="tm">15:09</span></a><span class="nk"> &lt;kveremitz&gt;</span> <span class="hi">juippis:</span> happy to throw the hacked version to a gist for comments/improvements/etc
+<a href="#l-268" name="l-268"><span class="tm">15:09</span></a><span class="nk"> &lt;kveremitz&gt;</span> ideally it needs quite a bit of work to split it more cleanly
+<a href="#l-269" name="l-269"><span class="tm">15:09</span></a><span class="nk"> &lt;kveremitz&gt;</span> but .. back on-topic..
+<a href="#l-270" name="l-270"><span class="tm">15:10</span></a><span class="nk"> &lt;juippis&gt;</span> I guess the problem with EAPI-6 is cross-compile not being consistend due to it. And some over-eager Gentoo devs have already opened a tracker bug to remove EAPI-6...
+<a href="#l-271" name="l-271"><span class="tm">15:10</span></a><span class="nk"> &lt;Whissi&gt;</span> :p
+<a href="#l-272" name="l-272"><span class="tm">15:10</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">Whissi:</span> we need a vote on that workflow ? mpagano is ok for you ?
+<a href="#l-273" name="l-273"><span class="tm">15:11</span></a><span class="nk"> &lt;mpagano&gt;</span> perfect
+<a href="#l-274" name="l-274"><span class="tm">15:11</span></a><span class="nk"> &lt;mpagano&gt;</span> +1
+<a href="#l-275" name="l-275"><span class="tm">15:11</span></a><span class="nk"> &lt;AlicefBot&gt;</span> +1 received from mpagano
+<a href="#l-276" name="l-276"><span class="tm">15:11</span></a><span class="nk"> &lt;alicef&gt;</span> wait...
+<a href="#l-277" name="l-277"><span class="tm">15:11</span></a><span class="nk"> &lt;alicef&gt;</span> not sure what you voted for lol
+<a href="#l-278" name="l-278"><span class="tm">15:11</span></a><span class="nk"> &lt;mpagano&gt;</span> the workflow
+<a href="#l-279" name="l-279"><span class="tm">15:11</span></a><span class="nk"> &lt;Whissi&gt;</span> He voted to send me some Easter eggs!
+<a href="#l-280" name="l-280"><span class="tm">15:12</span></a><span class="nk"> &lt;mpagano&gt;</span> I think the proposal was review and apply the patch from the bug, while we work in parallel on fixing it the way we want to
+<a href="#l-281" name="l-281"><span class="tm">15:12</span></a><span class="nk"> &lt;alicef&gt;</span> yes but there was no #vote
+<a href="#l-282" name="l-282"><span class="tm">15:12</span></a><span class="nk"> &lt;mpagano&gt;</span> ok
+<a href="#l-283" name="l-283"><span class="tm">15:12</span></a><span class="nk"> &lt;mpagano&gt;</span> -1
+<a href="#l-284" name="l-284"><span class="tm">15:12</span></a><span class="nk"> &lt;AlicefBot&gt;</span> -1 received from mpagano
+<a href="#l-285" name="l-285"><span class="tm">15:12</span></a><span class="nk"> &lt;alicef&gt;</span> so i have no idea where the bot added your vote XD
+<a href="#l-286" name="l-286"><span class="tm">15:12</span></a><span class="nk"> &lt;sam_&gt;</span> (It's largely a placeholder for stuff like 'eclasses don't support', rather than killing every single EAPI 6 ebuild right now.)
+<a href="#l-287" name="l-287"><span class="tm">15:13</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="cmd">#vote </span><span class="cmdline">eapi7 workflow of reviewing current patches from the bug and add than add whissi work gradually</span>
+<a href="#l-288" name="l-288"><span class="tm">15:13</span></a><span class="nk"> &lt;AlicefBot&gt;</span> Voting still open on: GKernelCI builded and tested genpatches can be stabilized (at least writing stable on bugzilla)?
+<a href="#l-289" name="l-289"><span class="tm">15:13</span></a><span class="nk"> &lt;Whissi&gt;</span> +1
+<a href="#l-290" name="l-290"><span class="tm">15:13</span></a><span class="nk"> &lt;AlicefBot&gt;</span> +1 received from Whissi
+<a href="#l-291" name="l-291"><span class="tm">15:13</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="cmd">#voted</span><span class="cmdline"></span>
+<a href="#l-292" name="l-292"><span class="tm">15:14</span></a><span class="nk"> &lt;mpagano&gt;</span> +1
+<a href="#l-293" name="l-293"><span class="tm">15:14</span></a><span class="nk"> &lt;AlicefBot&gt;</span> +1 received from mpagano
+<a href="#l-294" name="l-294"><span class="tm">15:14</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="cmd">#vote </span><span class="cmdline">eapi7 workflow of reviewing current patches from the bug and add than add whissi work gradually</span>
+<a href="#l-295" name="l-295"><span class="tm">15:14</span></a><span class="nk"> &lt;AlicefBot&gt;</span> Voting still open on: GKernelCI builded and tested genpatches can be stabilized (at least writing stable on bugzilla)?
+<a href="#l-296" name="l-296"><span class="tm">15:14</span></a><span class="nk"> &lt;alicef&gt;</span> eeeh how do i close vote ...
+<a href="#l-297" name="l-297"><span class="tm">15:14</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="cmd">#voted</span><span class="cmdline"></span>
+<a href="#l-298" name="l-298"><span class="tm">15:14</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="cmd">#vote </span><span class="cmdline">eapi7 workflow of reviewing current patches from the bug and add than add whissi work gradually</span>
+<a href="#l-299" name="l-299"><span class="tm">15:14</span></a><span class="nk"> &lt;AlicefBot&gt;</span> Voting still open on: GKernelCI builded and tested genpatches can be stabilized (at least writing stable on bugzilla)?
+<a href="#l-300" name="l-300"><span class="tm">15:15</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="cmd">#accepted</span><span class="cmdline"></span>
+<a href="#l-301" name="l-301"><span class="tm">15:15</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="cmd">#accepted </span><span class="cmdline">gkernelci</span>
+<a href="#l-302" name="l-302"><span class="tm">15:15</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="cmd">#accept </span><span class="cmdline">gkernelci</span>
+<a href="#l-303" name="l-303"><span class="tm">15:15</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="cmd">#vote </span><span class="cmdline">eapi7 workflow of reviewing current patches from the bug and add than add whissi work gradually</span>
+<a href="#l-304" name="l-304"><span class="tm">15:15</span></a><span class="nk"> &lt;AlicefBot&gt;</span> Voting still open on: GKernelCI builded and tested genpatches can be stabilized (at least writing stable on bugzilla)?
+<a href="#l-305" name="l-305"><span class="tm">15:16</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="cmd">#endvote</span><span class="cmdline"></span>
+<a href="#l-306" name="l-306"><span class="tm">15:16</span></a><span class="nk"> &lt;AlicefBot&gt;</span> Voting ended on: GKernelCI builded and tested genpatches can be stabilized (at least writing stable on bugzilla)?
+<a href="#l-307" name="l-307"><span class="tm">15:16</span></a><span class="nk"> &lt;AlicefBot&gt;</span> Votes for: 3, Votes against: 0, Abstentions: 0
+<a href="#l-308" name="l-308"><span class="tm">15:16</span></a><span class="nk"> &lt;AlicefBot&gt;</span> Motion carried
+<a href="#l-309" name="l-309"><span class="tm">15:16</span></a><span class="nk"> &lt;alicef&gt;</span> ooooh
+<a href="#l-310" name="l-310"><span class="tm">15:16</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="cmd">#vote </span><span class="cmdline">eapi7 workflow of reviewing current patches from the bug and add than add whissi work gradually</span>
+<a href="#l-311" name="l-311"><span class="tm">15:16</span></a><span class="nk"> &lt;AlicefBot&gt;</span> Please vote on: eapi7 workflow of reviewing current patches from the bug and add than add whissi work gradually
+<a href="#l-312" name="l-312"><span class="tm">15:16</span></a><span class="nk"> &lt;AlicefBot&gt;</span> Public votes can be registered by saying +1, -1 or +0 in channel (for private voting, private message me with 'vote +1|-1|+0 #channelname')
+<a href="#l-313" name="l-313"><span class="tm">15:16</span></a><span class="nk"> &lt;alicef&gt;</span> +1
+<a href="#l-314" name="l-314"><span class="tm">15:16</span></a><span class="nk"> &lt;AlicefBot&gt;</span> +1 received from alicef
+<a href="#l-315" name="l-315"><span class="tm">15:16</span></a><span class="nk"> &lt;alicef&gt;</span> ok you can now vote :)
+<a href="#l-316" name="l-316"><span class="tm">15:16</span></a><span class="nk"> &lt;sam_&gt;</span> this bot is fun
+<a href="#l-317" name="l-317"><span class="tm">15:16</span></a><span class="nk"> &lt;Whissi&gt;</span> +1
+<a href="#l-318" name="l-318"><span class="tm">15:16</span></a><span class="nk"> &lt;AlicefBot&gt;</span> +1 received from Whissi
+<a href="#l-319" name="l-319"><span class="tm">15:17</span></a><span class="nk"> &lt;kveremitz&gt;</span> fixed :D
+<a name="l-320"></a><span class="tm">15:17 </span><span class="nka">* alicef</span> <span class="ac">first time using meetbot :/</span>
+<a href="#l-321" name="l-321"><span class="tm">15:17</span></a><span class="nk"> &lt;kveremitz&gt;</span> teething issues, we'll get past it
+<a href="#l-322" name="l-322"><span class="tm">15:17</span></a><span class="nk"> &lt;alicef&gt;</span> mpagano you can vote now
+<a href="#l-323" name="l-323"><span class="tm">15:17</span></a><span class="nk"> &lt;kveremitz&gt;</span> having records will be good though
+<a href="#l-324" name="l-324"><span class="tm">15:17</span></a><span class="nk"> &lt;sam_&gt;</span> yeah, it's neat
+<a href="#l-325" name="l-325"><span class="tm">15:17</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">kveremitz:</span> that's what I hope
+<a href="#l-326" name="l-326"><span class="tm">15:18</span></a><span class="nk"> &lt;mpagano&gt;</span> +1
+<a href="#l-327" name="l-327"><span class="tm">15:18</span></a><span class="nk"> &lt;AlicefBot&gt;</span> +1 received from mpagano
+<a href="#l-328" name="l-328"><span class="tm">15:18</span></a><span class="nk"> &lt;alicef&gt;</span> also the log are much more simple to add to the wiki
+<a href="#l-329" name="l-329"><span class="tm">15:18</span></a><span class="nk"> &lt;alicef&gt;</span> actually I could do it automatically
+<a href="#l-330" name="l-330"><span class="tm">15:18</span></a><span class="nk"> &lt;kveremitz&gt;</span> I will hopefully get my test setup working again soon. I'm intrigued now to add lava jobs to it
+<a href="#l-331" name="l-331"><span class="tm">15:18</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="cmd">#endvote</span><span class="cmdline"></span>
+<a href="#l-332" name="l-332"><span class="tm">15:18</span></a><span class="nk"> &lt;AlicefBot&gt;</span> Voting ended on: eapi7 workflow of reviewing current patches from the bug and add than add whissi work gradually
+<a href="#l-333" name="l-333"><span class="tm">15:18</span></a><span class="nk"> &lt;AlicefBot&gt;</span> Votes for: 3, Votes against: 0, Abstentions: 0
+<a href="#l-334" name="l-334"><span class="tm">15:18</span></a><span class="nk"> &lt;AlicefBot&gt;</span> Motion carried
+<a href="#l-335" name="l-335"><span class="tm">15:19</span></a><span class="nk"> &lt;kveremitz&gt;</span> ^ \\o/
+<a href="#l-336" name="l-336"><span class="tm">15:19</span></a><span class="nk"> &lt;alicef&gt;</span> any other discussion on eapi7 ? or we can move on?
+<a href="#l-337" name="l-337"><span class="tm">15:20</span></a><span class="nk"> &lt;alicef&gt;</span> ok let's move on
+<a href="#l-338" name="l-338"><span class="tm">15:21</span></a><span class="nk"> &lt;kveremitz&gt;</span> quick query .. are there real cross-compile issues with kernels? how are thes.. no wait, not sure I wanna know. Historically, ebuilds don't build kernels.
+<a href="#l-339" name="l-339"><span class="tm">15:21</span></a><span class="nk"> &lt;kveremitz&gt;</span> so this would be a New Feature.
+<a href="#l-340" name="l-340"><span class="tm">15:22</span></a><span class="nk"> &lt;dm0&gt;</span> Cross-compiling dist-kernels mostly works fine.  There are a couple bugs for them, though.
+<a href="#l-341" name="l-341"><span class="tm">15:22</span></a><span class="nk"> &lt;alicef&gt;</span> I think we finished today topics
+<a href="#l-342" name="l-342"><span class="tm">15:22</span></a><span class="nk"> &lt;alicef&gt;</span> anything to add ?
+<a href="#l-343" name="l-343"><span class="tm">15:23</span></a><span class="nk"> &lt;montjoie&gt;</span> <span class="hi">kveremitz:</span> use lava-docker for simple test
+<a href="#l-344" name="l-344"><span class="tm">15:23</span></a><span class="nk"> &lt;montjoie&gt;</span> or if you want to play I have ebuilds for it
+<a href="#l-345" name="l-345"><span class="tm">15:23</span></a><span class="nk"> &lt;alicef&gt;</span> or something that i forgot
+<a href="#l-346" name="l-346"><span class="tm">15:23</span></a><span class="nk"> &lt;kveremitz&gt;</span> <span class="hi">montjoie:</span> gotcha, thanks
+<a href="#l-347" name="l-347"><span class="tm">15:23</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">mpagano:</span> we need a vote for divide genpatches-misc form linux-patches repository ?
+<a href="#l-348" name="l-348"><span class="tm">15:24</span></a><span class="nk"> &lt;kveremitz&gt;</span> ^ sounds good +1 from me
+<a href="#l-349" name="l-349"><span class="tm">15:25</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="cmd">#ACTION </span><span class="cmdline">open space</span>
+<a name="l-350"></a><span class="tm">15:25 </span><span class="nka">* AlicefBot</span> <span class="ac">open space</span>
+<a href="#l-351" name="l-351"><span class="tm">15:25</span></a><span class="nk"> &lt;kveremitz&gt;</span> <span class="cmd">#proposal </span><span class="cmdline">split genpatches-misc branch from linux-patches to new repo</span>
+<a href="#l-352" name="l-352"><span class="tm">15:25</span></a><span class="nk"> &lt;alicef&gt;</span> i think the bot dosen't have proposal
+<a href="#l-353" name="l-353"><span class="tm">15:25</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="cmd">#help</span><span class="cmdline"></span>
+<a href="#l-354" name="l-354"><span class="tm">15:26</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="cmd">#info</span><span class="cmdline"></span>
+<a href="#l-355" name="l-355"><span class="tm">15:26</span></a><span class="nk"> &lt;kveremitz&gt;</span> I should have perhaps grokd the bot before, but we can figure this out going forward
+<a href="#l-356" name="l-356"><span class="tm">15:26</span></a><span class="nk"> &lt;alicef&gt;</span> mpagano ?
+<a href="#l-357" name="l-357"><span class="tm">15:26</span></a><span class="nk"> &lt;mpagano&gt;</span> that's fiine
+<a href="#l-358" name="l-358"><span class="tm">15:27</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">mpagano:</span> any other topic ?
+<a href="#l-359" name="l-359"><span class="tm">15:27</span></a><span class="nk"> &lt;mpagano&gt;</span> not from me
+<a href="#l-360" name="l-360"><span class="tm">15:27</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">Whissi:</span> any other topic ?
+<a href="#l-361" name="l-361"><span class="tm">15:27</span></a><span class="nk"> &lt;kveremitz&gt;</span> <span class="hi">alicef:</span> date of next meeting? or poll?
+<a href="#l-362" name="l-362"><span class="tm">15:27</span></a><span class="nk"> &lt;mpagano&gt;</span> lead election
+<a href="#l-363" name="l-363"><span class="tm">15:27</span></a><span class="nk"> &lt;alicef&gt;</span> you should have already got the poll
+<a href="#l-364" name="l-364"><span class="tm">15:28</span></a><span class="nk"> &lt;alicef&gt;</span> i think is 11/04 next meeting
+<a href="#l-365" name="l-365"><span class="tm">15:28</span></a><span class="nk"> &lt;Whissi&gt;</span> nope
+<a href="#l-366" name="l-366"><span class="tm">15:28</span></a><span class="nk"> &lt;alicef&gt;</span> lead election mail is probably tomorrow
+<a href="#l-367" name="l-367"><span class="tm">15:28</span></a><span class="nk"> &lt;mpagano&gt;</span> ok
+<a href="#l-368" name="l-368"><span class="tm">15:28</span></a><span class="nk"> &lt;alicef&gt;</span> or we can do it here ?
+<a href="#l-369" name="l-369"><span class="tm">15:29</span></a><span class="nk"> &lt;alicef&gt;</span> as everyone is present
+<a href="#l-370" name="l-370"><span class="tm">15:29</span></a><span class="nk"> &lt;mpagano&gt;</span> it's all good to me
+<a href="#l-371" name="l-371"><span class="tm">15:29</span></a><span class="nk"> &lt;Whissi&gt;</span> yup
+<a href="#l-372" name="l-372"><span class="tm">15:29</span></a><span class="nk"> &lt;kveremitz&gt;</span> <span class="hi">alicef:</span> where did you send it?!
+<a name="l-373"></a><span class="tm">15:29 </span><span class="nka">* kveremitz</span> <span class="ac">is losing emails or something .. &gt;,&lt;</span>
+<a href="#l-374" name="l-374"><span class="tm">15:29</span></a><span class="nk"> &lt;alicef&gt;</span> yup do it here or yup mail ?
+<a href="#l-375" name="l-375"><span class="tm">15:30</span></a><span class="nk"> &lt;kveremitz&gt;</span> alas my old iee.org email is now defunct
+<a href="#l-376" name="l-376"><span class="tm">15:30</span></a><span class="nk"> &lt;kveremitz&gt;</span> 11/04 fine here.. 2pm UTC seems to work
+<a href="#l-377" name="l-377"><span class="tm">15:30</span></a><span class="nk"> &lt;kveremitz&gt;</span> somehow I had it 2pm BST here -facepalm-
+<a href="#l-378" name="l-378"><span class="tm">15:31</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">kveremitz:</span> I sended three reminder for meeting poll
+<a href="#l-379" name="l-379"><span class="tm">15:32</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">kveremitz:</span> kernel@gentoo.org and gentoo-kernel@lists.gentoo.org
+<a href="#l-380" name="l-380"><span class="tm">15:32</span></a><span class="nk"> &lt;kveremitz&gt;</span> really? I know you DM'd me . but only had one.... uhoh..
+<a href="#l-381" name="l-381"><span class="tm">15:32</span></a><span class="nk"> &lt;kveremitz&gt;</span> I wonder which alias I'm sub'd to .. :/
+<a href="#l-382" name="l-382"><span class="tm">15:32</span></a><span class="nk"> &lt;alicef&gt;</span> ok if there is anything else I will try to close this meeting
+<a href="#l-383" name="l-383"><span class="tm">15:32</span></a><span class="nk"> &lt;alicef&gt;</span> there isn't
+<a href="#l-384" name="l-384"><span class="tm">15:33</span></a><span class="nk"> &lt;kveremitz&gt;</span> done here
+<a href="#l-385" name="l-385"><span class="tm">15:33</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="cmd">#save</span><span class="cmdline"></span>
+<a href="#l-386" name="l-386"><span class="tm">15:33</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body>
+</html>
+

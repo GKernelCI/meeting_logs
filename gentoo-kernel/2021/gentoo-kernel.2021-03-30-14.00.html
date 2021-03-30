@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>#gentoo-kernel meeting</title>
+<style type="text/css">
+/* This is for the .html in the HTML2 writer */
+body {
+    font-family: Helvetica, sans-serif;
+    font-size:14px;
+}
+h1 {
+    text-align: center;
+}
+a {
+    color:navy;
+    text-decoration: none;
+    border-bottom:1px dotted navy;
+}
+a:hover {
+    text-decoration:none;
+    border-bottom: 0;
+    color:#0000B9;
+}
+hr {
+    border: 1px solid #ccc;
+}
+/* The (nick, time) item pairs, and other body text things. */
+.details {
+    font-size: 12px;
+    font-weight:bold;
+}
+/* The 'AGREED:', 'IDEA', etc, prefix to lines. */
+.itemtype {
+    font-style: normal;    /* un-italics it */
+    font-weight: bold;
+}
+/* Example: change single item types.  Capitalized command name.
+/* .TOPIC  {  color:navy;  } */
+/* .AGREED {  color:lime;  } */
+
+</style>
+
+</head>
+
+<body>
+<h1>#gentoo-kernel meeting</h1>
+<span class="details">
+Meeting started by alicef at 14:00:24 UTC
+(<a href="gentoo-kernel.2021-03-30-14.00.log.html">full logs</a>)</span>
+<br><br>
+
+
+
+<h3>Meeting summary</h3>
+<ol>
+  <li>
+    <ol type="a">
+      <li><i class="itemtype">ACTION</i>: <span class="ACTION">alicef
+        GKernelCI updates</span> <span class="details">(alicef, <a
+        href='gentoo-kernel.2021-03-30-14.00.log.html#l-5'>14:01</a>)</span></li>
+      <li><a
+        href="https://git.kernel.org/pub/scm/fs/xfs/xfstests-dev.git/">https://git.kernel.org/pub/scm/fs/xfs/xfstests-dev.git/</a>
+        <span class="details">(Whissi, <a
+        href='gentoo-kernel.2021-03-30-14.00.log.html#l-43'>14:10</a>)</span></li>
+      <li><a
+        href="https://github.com/Linaro/test-definitions/tree/master/automated/linux">https://github.com/Linaro/test-definitions/tree/master/automated/linux</a>
+        <span class="details">(alicef, <a
+        href='gentoo-kernel.2021-03-30-14.00.log.html#l-50'>14:11</a>)</span></li>
+      <li><a
+        href="https://github.com/montjoie/buildroot/blob/montjoie/board/montjoie/kexec/grub/rootfs-overlay/sbin/init">https://github.com/montjoie/buildroot/blob/montjoie/board/montjoie/kexec/grub/rootfs-overlay/sbin/init</a>
+        for details <span class="details">(montjoie, <a
+        href='gentoo-kernel.2021-03-30-14.00.log.html#l-154'>14:41</a>)</span></li>
+      <li><a
+        href="https://www.hpe.com/us/en/servers/integrated-lights-out-ilo.html">https://www.hpe.com/us/en/servers/integrated-lights-out-ilo.html</a>
+        and Dell is
+        https://www.delltechnologies.com/en-gb/solutions/openmanage/idrac.htm
+        for ref. <span class="details">(kveremitz, <a
+        href='gentoo-kernel.2021-03-30-14.00.log.html#l-175'>14:45</a>)</span></li>
+      <li><i class="itemtype">AGREED</i>: <span class="AGREED">on whissi
+        workflow</span> <span class="details">(alicef, <a
+        href='gentoo-kernel.2021-03-30-14.00.log.html#l-183'>14:46</a>)</span></li>
+      <li><i class="itemtype">ACTION</i>: <span class="ACTION">whissi
+        EAPI 7</span> <span class="details">(alicef, <a
+        href='gentoo-kernel.2021-03-30-14.00.log.html#l-220'>14:59</a>)</span></li>
+      <li><i class="itemtype">HELP</i>: <span class="HELP"></span> <span
+        class="details">(kveremitz, <a
+        href='gentoo-kernel.2021-03-30-14.00.log.html#l-234'>15:02</a>)</span></li>
+      <li><i class="itemtype">ACCEPTED</i>: <span class="ACCEPTED"><font
+        color="green"></font></span> <span class="details">(alicef, <a
+        href='gentoo-kernel.2021-03-30-14.00.log.html#l-300'>15:15</a>)</span></li>
+      <li><i class="itemtype">ACCEPTED</i>: <span class="ACCEPTED"><font
+        color="green">gkernelci</font></span> <span
+        class="details">(alicef, <a
+        href='gentoo-kernel.2021-03-30-14.00.log.html#l-301'>15:15</a>)</span></li>
+      <li><i class="itemtype">ACCEPTED</i>: <span class="ACCEPTED"><font
+        color="green">gkernelci</font></span> <span
+        class="details">(alicef, <a
+        href='gentoo-kernel.2021-03-30-14.00.log.html#l-302'>15:15</a>)</span></li>
+      <li><i class="itemtype">VOTE</i>: <span class="VOTE">GKernelCI
+        builded and tested genpatches can be stabilized (at least
+        writing stable on bugzilla)? (Carried)</span> <span
+        class="details">(alicef, <a
+        href='gentoo-kernel.2021-03-30-14.00.log.html#l-305'>15:16</a>)</span></li>
+      <li><i class="itemtype">VOTE</i>: <span class="VOTE">eapi7
+        workflow of reviewing current patches from the bug and add than
+        add whissi work gradually (Carried)</span> <span
+        class="details">(alicef, <a
+        href='gentoo-kernel.2021-03-30-14.00.log.html#l-331'>15:18</a>)</span></li>
+      <li><i class="itemtype">ACTION</i>: <span class="ACTION">open
+        space</span> <span class="details">(alicef, <a
+        href='gentoo-kernel.2021-03-30-14.00.log.html#l-349'>15:25</a>)</span></li>
+      <li><i class="itemtype">HELP</i>: <span class="HELP"></span> <span
+        class="details">(alicef, <a
+        href='gentoo-kernel.2021-03-30-14.00.log.html#l-353'>15:25</a>)</span></li>
+      <li><span class="INFO"></span> <span class="details">(alicef, <a
+        href='gentoo-kernel.2021-03-30-14.00.log.html#l-354'>15:26</a>)</span></li>
+    </ol>
+  </li>
+</ol>
+<br><br>
+
+
+
+<span class="details">
+Meeting ended at 15:33:40 UTC
+(<a href="gentoo-kernel.2021-03-30-14.00.log.html">full logs</a>)</span>
+<br><br>
+
+
+
+<h3>Action items</h3>
+<ol>
+  <li>alicef GKernelCI updates</li>
+  <li>whissi EAPI 7</li>
+  <li>open space</li>
+</ol>
+<br><br>
+
+
+
+<h3>Action items, by person</h3>
+<ol>
+  <li>alicef<ol type="a">
+    <li>alicef GKernelCI updates</li>
+  </ol></li>
+  <li>Whissi<ol type="a">
+    <li>whissi EAPI 7</li>
+  </ol></li>
+  <li><b>UNASSIGNED</b><ol>
+    <li>open space</li>
+  </ol></li>
+</ol>
+<br><br>
+
+
+
+<h3>People present (lines said)</h3>
+<ol>
+  <li>alicef (136)</li>
+  <li>kveremitz (90)</li>
+  <li>Whissi (58)</li>
+  <li>AlicefBot (35)</li>
+  <li>montjoie (26)</li>
+  <li>mpagano (25)</li>
+  <li>juippis (9)</li>
+  <li>sam_ (4)</li>
+  <li>dm0 (2)</li>
+  <li>willikins (1)</li>
+</ol>
+<br><br>
+
+
+
+<span class="details">Generated by <a href="https://github.com/GKernelCI/Gmeetbot">MeetBot</a> 0.4.0</span>
+</body>
+</html>

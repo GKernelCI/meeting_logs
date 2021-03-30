@@ -1,0 +1,386 @@
+14:00 <alicef> #startmeeting
+14:00 <AlicefBot> Meeting started at 14:00:24 UTC.  The chair is alicef.  Information about MeetBot at https://github.com/GKernelCI/Gmeetbot
+14:00 <AlicefBot> Available commands: action, commands, idea, info, link, nick
+14:00 <kveremitz> I'm mostly gonna be here, but I have a plumber fixin my hot water today
+14:01 <alicef> #action alicef GKernelCI updates
+14:01 * AlicefBot alicef GKernelCI updates
+14:01 <alicef> kveremitz: ok
+14:01 <alicef> - currently because of improved testing for each linux-patch commit gkernelci became slow.
+14:02 <alicef> - current architecture under test amd64 (clang, gcc) arm64 arm ppc64 sparc
+14:02 <alicef> - GKernelCI logo approval https://bugs.gentoo.org/777972
+14:03 <alicef> #vote GKernelCI builded and tested genpatches can be stabilized (at least writing stable on bugzilla)?
+14:03 <AlicefBot> Please vote on: GKernelCI builded and tested genpatches can be stabilized (at least writing stable on bugzilla)?
+14:03 <AlicefBot> Public votes can be registered by saying +1, -1 or +0 in channel (for private voting, private message me with 'vote +1|-1|+0 #channelname')
+14:04 <alicef> what's this...
+14:04 <alicef> whissi any idea on this ?
+14:04 <Whissi> Well.
+14:04 <mpagano> so no boot test ?
+14:04 <alicef> if not how we can improve it and what tests are missing ?
+14:05 <mpagano> I boot test every one
+14:05 <Whissi> When we decided to stable KV $x, we can use GKernelCI for the next steps, yes.
+14:05 <mpagano> usually Whissi points out major bugs we are waiting on
+14:05 <alicef> boot test should be ok by stabilization page if afair
+14:05 <mpagano> bugs reported on other distros
+14:05 <Whissi> But I don't see GKernelCI ready to tell us when the next version is good for stabilization
+14:05 <mpagano> some from our users, etc
+14:06 <Whissi> We still have to monitor mailing list because we have almost zero test coverage in GKernelCi
+14:06 <alicef> Whissi: sure, I agree
+14:06 <alicef> we are doing kselftest but would be nice to implement specifics test with kselftest or some other tool
+14:07 <Whissi> kselftest is nice to have, yes. But it never catched any serious bugs in LTS I am aware of.
+14:07 <alicef> but still is complicated without the device at hand
+14:07 <Whissi> The minimum possible suites would include xfs test suite for example
+14:08 <Whissi> I think BTRFS has also one
+14:08 <kveremitz> I don't think our automated testing framework can cover enough potential configurations to be used exclusively for stabilisation. I would like to think that upstream already performs basic testing like we are...
+14:08 <alicef> xfs have a specific test suite ?
+14:08 <Whissi> Yes
+14:09 <kveremitz> also, we have always prided ourselves in Gentoo on testing with Real Hardware.
+14:09 <alicef> this one https://github.com/zfsonlinux/xfstests ?
+14:09 <Whissi> I still don't know if you boot a base image. In that case we could also make sure to do some stuff in user space like configuring it to check if it was able to mount an additional LUKS-encrypted partition...
+14:09 <kveremitz> But its a very useful baseline check to see that our patching and toolchains work correctly
+14:09 <alicef> Whissi: yes we boot a base image
+14:09 <alicef> we are hacking stage3 for rootfs
+14:10 <kveremitz> we can build up the rootfs/etc to incorporate more configurations
+14:10 <Whissi> https://git.kernel.org/pub/scm/fs/xfs/xfstests-dev.git/
+14:10 <alicef> luks-encrypted would be useful :)
+14:10 <alicef> I also use luks
+14:10 <kveremitz> what does the lava framework provide?
+14:10 <alicef> Whissi: thanks for the link
+14:10 <alicef> there are lava testsuite
+14:11 <alicef> but they need to be reimplemented for GKernelCI
+14:11 <alicef> https://github.com/Linaro/test-definitions/tree/master/automated/linux
+14:12 <alicef> I don't see xfstests-dev or luks test
+14:12 <kveremitz> is kselftest and lava just pre-defined tests, how can we adapt to test the things we want/need to .. ?
+14:13 <kveremitz> eg. luks, xfs, zfs? etc
+14:13 <alicef> Whissi: can I for example wrote here (https://bugs.gentoo.org/778824) what works with GKernelCI
+14:13 <kveremitz> alicef: is there a roadmap doc for GkernelCI ?
+14:13 <alicef> kveremitz: read kselftest documentation is really nice about how to implement new tests
+14:13 <alicef> kveremitz: no that's why I'm asking
+14:14 <Whissi> alicef: Sorry, I don't understand. What do want to do exactly?
+14:15 <alicef> like works for amd64 or some other architecture under GKernelCI?
+14:15 <alicef> GKernelCI tests can be used in the stabilization bug ?
+14:16 <alicef> I can manually write what work for GKernelCI
+14:16 <alicef> and what not
+14:16 <Whissi> Well, the question would be how we are going to use the results once we decided to go and just wait for GKCI results
+14:17 <kveremitz> alicef: are you proposing filing automated bugs for kernelCI runs? I don't see how the stabilisation bugs can be integrated?
+14:17 <alicef> if could be useful
+14:17 <Whissi> Like GKCI could create commit scripts in tatt style
+14:17 <Whissi> Just post to bugs and we pick up and do the commit..
+14:17 <alicef> yes that would be nice
+14:18 <kveremitz> it would be good to file bugs with upstream test results potentially, so there is one source in Gentoo to check results?
+14:18 <alicef> kveremitz: we are already doing that with kcidb -> kernelci
+14:20 <kveremitz> err.. file Gentoo bugs with upstream test results. Was what I meant :D
+14:20 <kveremitz> to combine data sources
+14:20 <kveremitz> eg. from other distros
+14:20 <Whissi> Wait, I am not sure if we all are talking about the same at the moment :D
+14:21 <Whissi> Let me recap
+14:21 <alicef> kveremitz: yes that is what kernelci is currently working on
+14:21 <alicef> Whissi: thanks
+14:21 <kveremitz> sorry .. I'm probably crossing wires..
+14:21 <Whissi> For now, GKernelCI won't do anything on its own.
+14:21 <alicef> kveremitz: we are going bit off topic
+14:21 <Whissi> Once we decided to stabilize linux-5.10.27 for example
+14:21 <Whissi> because we (humans :p) haven't found any blocking stuff
+14:22 <Whissi> We will do the stabilization bug like we do it all the time
+14:22 <kveremitz> ^ agreed so far :D
+14:22 <Whissi> But in addition, based on CI results, we can mark gentoo-sources stable on our own
+14:22 <Whissi> (after we started normal stabilization)
+14:22 <mpagano> that I like
+14:24 <kveremitz> hmm.. are you implying a parallel process?
+14:24 <kveremitz> and is this a 'global' or 'local' stabilisation 'flag'?
+14:24 <alicef> if we can do xfstest-dev and luks encryption test, how the workflow would be improved ?
+14:26 <Whissi> I don't think that this will really affect the workflow. It will only give us more confidence.
+14:26 <alicef> Whissi: ok
+14:26 <alicef> +1 for whissi workflow
+14:26 <AlicefBot> +1 for whissi workflow received from alicef
+14:27 <alicef> any other vote ?
+14:28 <mpagano> +1
+14:28 <AlicefBot> +1 received from mpagano
+14:28 <mpagano> +1 for mpagano
+14:28 <AlicefBot> +1 for mpagano received from mpagano
+14:28 <kveremitz> from what I am seeing/reading.. there is no change here, process stays the same, but when doing [manual] stabilisations, we can verify GkernelCI results .. right?
+14:28 <mpagano> nice
+14:28 <Whissi> We maybe need to talk about our long term goal regarding fully automatization.
+14:29 <alicef> Whissi: yes
+14:29 <kveremitz> Whissi: hence my question about a Roadmap (this being the normal process for establishing and tracking goals)
+14:29 <alicef> Whissi: also you can open isssues on gkernelci or gentoo bugs about gkernelci
+14:29 <Whissi> My problem is that we don't test on real hardware. While anything we test would be an improvement already vs status quo, we still don't run kernels on real hardware.
+14:29 <Whissi> So we will not test real hardware issues.
+14:30 <Whissi> And the blockers for 5.10 stabilization for example were all i915 and AMD graphics
+14:30 <alicef> Whissi: I would be happy to have some sponsored real hardware machine :D
+14:30 <kveremitz> aye, recent issues have been graphics, ^ and networking
+14:31 <alicef> they should be not complicated to implement the testing part with lava
+14:32 <Whissi> But how would that work?
+14:32 <montjoie> (being late) I have already LAVA tests for luks
+14:32 <alicef> so if you have some machine that is similar to a production machine that you want to test
+14:32 <alicef> montjoie: nice !
+14:33 <alicef> montjoie: how would work implementing real hardware for testing with lava ?
+14:33 <montjoie> I dont understand the question. you mean does it is possible ? or howto ?
+14:33 <Whissi> At work I have created some PXE setups... i.e. these systems will pull in everything needed to boot via network. When a reboot is triggered we have a timer... when the system won't come up until timeout is reached, we assume failure.
+14:34 <kveremitz> Whissi: that sounds useful
+14:34 <montjoie> real hardware is possible (it is what kernelci do)
+14:34 <Whissi> In our case we are using Dell hardware where we can access iDRAC remotely for stuff like power cycle.
+14:34 <montjoie> for x86 I have already some board in LAVA
+14:34 <alicef> yes
+14:34 <kveremitz> how can we integrate this/these systems with GkernelCI ?
+14:35 <Whissi> But I am not sure if this will help us to detect i915 failures for example.
+14:35 <montjoie> you just have to generate a LAVA job
+14:35 <montjoie> my x86 has a i915, point me to a kernel failure and I can try to reproduce
+14:36 <alicef> should be like adding devices for different servers
+14:36 <alicef> something like this https://lava.ciplatform.org/scheduler/alldevices
+14:37 <Whissi> montjoie: See the "[Intel-gfx] [5.10.y regression] i915 clear-residuals mitigation is causing gfx issues" thread
+14:37 <kveremitz> sounds promising
+14:37 <kveremitz> I thought this was the idea of Lava :)
+14:37 <Whissi> I am not that familiar with LAVA, wondering how LAVA should detect something like that.
+14:37 <montjoie> the only problem in x86 is that pxe is not ~~~reliable for console output
+14:37 <montjoie> I hit many big problem
+14:38 <kveremitz> true .. that's where a BMC/etc would be more useful
+14:38 <kveremitz> wrt remote consoles
+14:38 <montjoie> for example my x86 send s..t to console so... I have a kernel which boot a rootfs, and init is a fake grub shell
+14:38 <kveremitz> Lava should have handling for that .. although it might not
+14:38 <montjoie> then it kexecto final kernel
+14:38 <kveremitz> oof yuk
+14:38 <montjoie> result is 100% stable
+14:39 <montjoie> stable since you use kernel console and not pxe one
+14:39 <kveremitz> stable+reliable is good
+14:39 <montjoie> for CI you NEED reliable
+14:39 <kveremitz> reproducible+consistent, even better :D
+14:39 <kveremitz> right
+14:39 <montjoie> you can deploy this everywhere, I do the same for some shitty ARM board
+14:39 <montjoie> but it is uboot fake in that case
+14:40 <kveremitz> cool .. I
+14:40 <kveremitz> cool, I'd be interested in testing/deploying that across my different hardware also
+14:40 <alicef> Whissi: if you are willing to sponsor a server we could try to add it to lava workflow
+14:40 <kveremitz> although I won't be devising lava tests for some of the known peculiarities :D
+14:41 <montjoie> https://github.com/montjoie/buildroot/blob/montjoie/board/montjoie/kexec/grub/rootfs-overlay/sbin/init for details
+14:41 <kveremitz> *bookmarked*
+14:41 <Whissi> heh, sadly, not possible for me.
+14:41 <Whissi> But we maybe able to ask foundation to do that...
+14:41 <Whissi> Doesn't have to be a beefy server
+14:41 <alicef> Whissi: sure
+14:41 <Whissi> Just a Dell system with proper iDRAC...
+14:42 <alicef> I don't know what server you want to test
+14:42 <kveremitz> I'm sure foundation has toasters :D heh. OSUOSL might be able to help out .. worth asking Ramereth in the channel
+14:42 <alicef> if you give me some specs I can try to ask to foundation
+14:42 <kveremitz> .. #osuosl
+14:42 <alicef> a dell system with iDrac
+14:43 <juippis> I've got some old HP proliant rack computer from 2011-2012 under my bed if that's use for anyone :P
+14:43 <alicef> also infra would be better to have testing enviroments
+14:43 <Whissi> Before we are asking for money/donation it would be cool if we have a working PoC in a lab or something. Would be a shame if we ask for something which we would be unable to use in the end.
+14:43 <montjoie> just for finish the solution, I use a power switch, a energenie-USB (~40€)
+14:43 <kveremitz> Whissi: +1
+14:43 <juippis> I can also visit hetzner in finland if you got foundation funding to place something in there
+14:44 <kveremitz> juippis: +1.. I also have a ProLiant with its .. thing.
+14:44 <alicef> anyway for now whissi can you vote on the workflow you proposed ?
+14:44 <kveremitz> iLo is HP
+14:45 <kveremitz> https://www.hpe.com/us/en/servers/integrated-lights-out-ilo.html and Dell is https://www.delltechnologies.com/en-gb/solutions/openmanage/idrac.htm for ref.
+14:45 <kveremitz> same principle
+14:45 <alicef> and I will try to close the vote
+14:45 <Whissi> +1 for whissi workflow
+14:45 <AlicefBot> +1 for whissi workflow received from Whissi
+14:46 <kveremitz> #votes
+14:46 <kveremitz> heh
+14:46 <montjoie> Whissi: I see your link, but does this can be tested automatacly ?
+14:46 <alicef> #agree on whissi workflow
+14:46 <AlicefBot> AGREED: on whissi workflow
+14:46 <alicef> #voted
+14:47 <Whissi> montjoie: Which link? I posted multiple links ;)
+14:47 <montjoie> [Intel-gfx] [5.10.y regression] i915 clear-residuals mitigation is causing gfx issues" thread
+14:47 <kveremitz> heh I have one of those for my router/modem (usb power switch) attached to a rpi :D
+14:48 <Whissi> montjoie: Well, that's actually my question...
+14:48 <montjoie> time to create an issue to dig this
+14:48 <kveremitz> good idea +1
+14:49 <montjoie> alicef: any place where i915, luks etc test related issue should be created ? ghelper probably since it own the lava generate stuff right ?
+14:50 <alicef> ghelper is ok
+14:50 <alicef> in any case all issues get into the main project folder
+14:50 <alicef> so it dosen't matter too much where you open the issue
+14:51 <alicef> montjoie: -> https://github.com/orgs/GKernelCI/projects/2
+14:51 <kveremitz> 👍
+14:52 <alicef> the only repository that dosen't catch is the gmeetbot probably
+14:53 <alicef> #vote everyone ok with the GKernelCI logo https://bugs.gentoo.org/777972 ?
+14:53 <AlicefBot> Voting still open on: GKernelCI builded and tested genpatches can be stabilized (at least writing stable on bugzilla)?
+14:53 <alicef> +1
+14:53 <AlicefBot> +1 received from alicef
+14:54 <alicef> mpagano: Whissi  ?
+14:55 <Whissi> +1
+14:55 <AlicefBot> +1 received from Whissi
+14:55 <alicef> mpagano: ?
+14:56 <mpagano> +1
+14:56 <AlicefBot> +1 received from mpagano
+14:56 <mpagano> that would be great for me
+14:56 <alicef> we can close the discussion on gkernelci ?
+14:57 <montjoie> Whissi: https://drm.pages.freedesktop.org/igt-gpu-tools/igt-i915-tests.html :D
+14:57 <alicef> montjoie+1
+14:57 <alicef> montjoie +1
+14:57 <alicef> thanks!
+14:57 <Whissi> montjoie: Sure but I don't know if it would catch the reported problem ;)
+14:57 <montjoie> kveremitz: https://storage.kernelci.org/mainline/master/v5.12-rc5/x86_64/x86_64_defconfig/gcc-8/lab-clabbe/baseline-d2500cc.html log of grubfake solution
+14:58 <montjoie> Whissi: I will try
+14:58 <Whissi> Cool, thanks
+14:58 <alicef> if there are no other dicussion topic for gkernelci, let's move to eapi 7
+14:59 <alicef> #action whissi EAPI 7
+14:59 * AlicefBot whissi EAPI 7
+14:59 <kveremitz> I like the idea of artwork approval, but can the amateur lawyers get themselves sorted out, so that this is Feasible? otherwise we can only vote on interest, not action
+14:59 <kveremitz> montjoie: thanks!
+15:00 <mpagano> Whissi: how can we help on EAPI 7
+15:00 <alicef> kveremitz: currently the vote is only interest, there is a discussion if is about law ok or notin another bug
+15:00 <kveremitz> alicef: ok
+15:00 <alicef> Whissi: how we can help?
+15:00 <kveremitz> I vote the legal stuff is fixed :D
+15:01 <kveremitz> And I vote for more artwork :D
+15:01 <kveremitz> #topic
+15:01 <alicef> kveremitz: plese don't go off topic XD
+15:01 <kveremitz> heh
+15:01 <Whissi> Well.
+15:02 <kveremitz> #help
+15:02 <kveremitz> what are the damn thingies LOL
+15:02 <alicef> kveremitz: only chair can do it
+15:03 <Whissi> Like said I was working on completely new EAPI 7 eclasses to get rid of all the old hacks.
+15:03 <kveremitz> Whissi: how far along are you?
+15:03 <juippis> "I was" and not "I am" sounds bad :I
+15:04 <Whissi> But I am stuck because of time. I have a working draft for basic gentoo-sources...
+15:04 <kveremitz> since there is a real chance Someone could commit another 'hack' to the stack to serve Their immediate purposes...
+15:04 <alicef> Whissi: how can we help ?
+15:04 <kveremitz> ^
+15:04 <Whissi> but it would break with some stuff.
+15:04 <juippis> wasn't there a proposition in the mailing list to update kernel-2.eclass with EAPI-7 compatibility?
+15:04 <juippis> did someone look at that?
+15:05 <dm0> bug #702280
+15:05 <willikins> dm0: https://bugs.gentoo.org/702280 "kernel-2.eclass: add EAPI=7 support"; Gentoo Linux, Eclasses; CONF; slyfox:kernel
+15:05 <kveremitz> yes, this was my point ..
+15:05 <Whissi> I am actually not sure if I (we) should continue that path or if we should try to migrate existing eclass to EAPI 7 following the proposed patch (which I still need to review).
+15:05 <kveremitz> we can continue "plastering over" problems..
+15:06 <juippis> Whissi: what are the faulty points in kernel-2.eclass you're trying to fix with new eclass?
+15:06 <sam_> a lot of the variables are not documented
+15:06 <kveremitz> I have a proposal for splitting unipatch function, which I would welcome review/feedback/patches (its horribly crude at present)
+15:06 <alicef> Whissi: which one is faster and reliable ?
+15:06 <kveremitz> unipatches at present uses the incorrect phase function(s)
+15:06 <Whissi> I mean, the patch looks small. I don't like the idea to keep some stuff... but when we re-invent the wheel... let's allow them to use EAPI 7 and do the other work when we have time for that. At least I won't have time for that in the next weeks.
+15:06 <Whissi> So faster would be reviewing patches for now
+15:07 <juippis> kveremitz: src_unpack instead of _prepare?
+15:07 <alicef> Whissi: I think that should be a good idea
+15:07 <kveremitz> what are the problems with not having EAPI-7 support for kernel ebuilds at present?
+15:07 <juippis> (which is hell annoying btw)
+15:07 <kveremitz> juippis: yes, basically
+15:08 <kveremitz> juippis: my version has components of unipatch in each function, for the relevant parts
+15:08 <alicef> Whissi: would be ok for you to review the current patches and add your work gradually ?
+15:09 <Whissi> yes
+15:09 <kveremitz> juippis: happy to throw the hacked version to a gist for comments/improvements/etc
+15:09 <kveremitz> ideally it needs quite a bit of work to split it more cleanly
+15:09 <kveremitz> but .. back on-topic..
+15:10 <juippis> I guess the problem with EAPI-6 is cross-compile not being consistend due to it. And some over-eager Gentoo devs have already opened a tracker bug to remove EAPI-6...
+15:10 <Whissi> :p
+15:10 <alicef> Whissi: we need a vote on that workflow ? mpagano is ok for you ?
+15:11 <mpagano> perfect
+15:11 <mpagano> +1
+15:11 <AlicefBot> +1 received from mpagano
+15:11 <alicef> wait...
+15:11 <alicef> not sure what you voted for lol
+15:11 <mpagano> the workflow
+15:11 <Whissi> He voted to send me some Easter eggs!
+15:12 <mpagano> I think the proposal was review and apply the patch from the bug, while we work in parallel on fixing it the way we want to
+15:12 <alicef> yes but there was no #vote
+15:12 <mpagano> ok
+15:12 <mpagano> -1
+15:12 <AlicefBot> -1 received from mpagano
+15:12 <alicef> so i have no idea where the bot added your vote XD
+15:12 <sam_> (It's largely a placeholder for stuff like 'eclasses don't support', rather than killing every single EAPI 6 ebuild right now.)
+15:13 <alicef> #vote eapi7 workflow of reviewing current patches from the bug and add than add whissi work gradually
+15:13 <AlicefBot> Voting still open on: GKernelCI builded and tested genpatches can be stabilized (at least writing stable on bugzilla)?
+15:13 <Whissi> +1
+15:13 <AlicefBot> +1 received from Whissi
+15:13 <alicef> #voted
+15:14 <mpagano> +1
+15:14 <AlicefBot> +1 received from mpagano
+15:14 <alicef> #vote eapi7 workflow of reviewing current patches from the bug and add than add whissi work gradually
+15:14 <AlicefBot> Voting still open on: GKernelCI builded and tested genpatches can be stabilized (at least writing stable on bugzilla)?
+15:14 <alicef> eeeh how do i close vote ...
+15:14 <alicef> #voted
+15:14 <alicef> #vote eapi7 workflow of reviewing current patches from the bug and add than add whissi work gradually
+15:14 <AlicefBot> Voting still open on: GKernelCI builded and tested genpatches can be stabilized (at least writing stable on bugzilla)?
+15:15 <alicef> #accepted
+15:15 <alicef> #accepted gkernelci
+15:15 <alicef> #accept gkernelci
+15:15 <alicef> #vote eapi7 workflow of reviewing current patches from the bug and add than add whissi work gradually
+15:15 <AlicefBot> Voting still open on: GKernelCI builded and tested genpatches can be stabilized (at least writing stable on bugzilla)?
+15:16 <alicef> #endvote
+15:16 <AlicefBot> Voting ended on: GKernelCI builded and tested genpatches can be stabilized (at least writing stable on bugzilla)?
+15:16 <AlicefBot> Votes for: 3, Votes against: 0, Abstentions: 0
+15:16 <AlicefBot> Motion carried
+15:16 <alicef> ooooh
+15:16 <alicef> #vote eapi7 workflow of reviewing current patches from the bug and add than add whissi work gradually
+15:16 <AlicefBot> Please vote on: eapi7 workflow of reviewing current patches from the bug and add than add whissi work gradually
+15:16 <AlicefBot> Public votes can be registered by saying +1, -1 or +0 in channel (for private voting, private message me with 'vote +1|-1|+0 #channelname')
+15:16 <alicef> +1
+15:16 <AlicefBot> +1 received from alicef
+15:16 <alicef> ok you can now vote :)
+15:16 <sam_> this bot is fun
+15:16 <Whissi> +1
+15:16 <AlicefBot> +1 received from Whissi
+15:17 <kveremitz> fixed :D
+15:17 * alicef first time using meetbot :/
+15:17 <kveremitz> teething issues, we'll get past it
+15:17 <alicef> mpagano you can vote now
+15:17 <kveremitz> having records will be good though
+15:17 <sam_> yeah, it's neat
+15:17 <alicef> kveremitz: that's what I hope
+15:18 <mpagano> +1
+15:18 <AlicefBot> +1 received from mpagano
+15:18 <alicef> also the log are much more simple to add to the wiki
+15:18 <alicef> actually I could do it automatically
+15:18 <kveremitz> I will hopefully get my test setup working again soon. I'm intrigued now to add lava jobs to it
+15:18 <alicef> #endvote
+15:18 <AlicefBot> Voting ended on: eapi7 workflow of reviewing current patches from the bug and add than add whissi work gradually
+15:18 <AlicefBot> Votes for: 3, Votes against: 0, Abstentions: 0
+15:18 <AlicefBot> Motion carried
+15:19 <kveremitz> ^ \\o/
+15:19 <alicef> any other discussion on eapi7 ? or we can move on?
+15:20 <alicef> ok let's move on
+15:21 <kveremitz> quick query .. are there real cross-compile issues with kernels? how are thes.. no wait, not sure I wanna know. Historically, ebuilds don't build kernels.
+15:21 <kveremitz> so this would be a New Feature.
+15:22 <dm0> Cross-compiling dist-kernels mostly works fine.  There are a couple bugs for them, though.
+15:22 <alicef> I think we finished today topics
+15:22 <alicef> anything to add ?
+15:23 <montjoie> kveremitz: use lava-docker for simple test
+15:23 <montjoie> or if you want to play I have ebuilds for it
+15:23 <alicef> or something that i forgot
+15:23 <kveremitz> montjoie: gotcha, thanks
+15:23 <alicef> mpagano: we need a vote for divide genpatches-misc form linux-patches repository ?
+15:24 <kveremitz> ^ sounds good +1 from me
+15:25 <alicef> #ACTION open space
+15:25 * AlicefBot open space
+15:25 <kveremitz> #proposal split genpatches-misc branch from linux-patches to new repo
+15:25 <alicef> i think the bot dosen't have proposal
+15:25 <alicef> #help
+15:26 <alicef> #info
+15:26 <kveremitz> I should have perhaps grokd the bot before, but we can figure this out going forward
+15:26 <alicef> mpagano ?
+15:26 <mpagano> that's fiine
+15:27 <alicef> mpagano: any other topic ?
+15:27 <mpagano> not from me
+15:27 <alicef> Whissi: any other topic ?
+15:27 <kveremitz> alicef: date of next meeting? or poll?
+15:27 <mpagano> lead election
+15:27 <alicef> you should have already got the poll
+15:28 <alicef> i think is 11/04 next meeting
+15:28 <Whissi> nope
+15:28 <alicef> lead election mail is probably tomorrow
+15:28 <mpagano> ok
+15:28 <alicef> or we can do it here ?
+15:29 <alicef> as everyone is present
+15:29 <mpagano> it's all good to me
+15:29 <Whissi> yup
+15:29 <kveremitz> alicef: where did you send it?!
+15:29 * kveremitz is losing emails or something .. >,<
+15:29 <alicef> yup do it here or yup mail ?
+15:30 <kveremitz> alas my old iee.org email is now defunct
+15:30 <kveremitz> 11/04 fine here.. 2pm UTC seems to work
+15:30 <kveremitz> somehow I had it 2pm BST here -facepalm-
+15:31 <alicef> kveremitz: I sended three reminder for meeting poll
+15:32 <alicef> kveremitz: kernel@gentoo.org and gentoo-kernel@lists.gentoo.org
+15:32 <kveremitz> really? I know you DM'd me . but only had one.... uhoh..
+15:32 <kveremitz> I wonder which alias I'm sub'd to .. :/
+15:32 <alicef> ok if there is anything else I will try to close this meeting
+15:32 <alicef> there isn't
+15:33 <kveremitz> done here
+15:33 <alicef> #save
+15:33 <alicef> #endmeeting
