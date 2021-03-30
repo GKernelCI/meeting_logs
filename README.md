@@ -1,5 +1,4 @@
 # Gentoo Kernel team meeting logs
-Gentoo Kernel meeting logs
 
 Can also be seen at:  
 https://wiki.gentoo.org/wiki/Project:Kernel/meetings
