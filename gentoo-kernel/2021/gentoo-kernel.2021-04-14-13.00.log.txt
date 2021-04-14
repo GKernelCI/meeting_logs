@@ -1,0 +1,54 @@
+13:00 <alicef> #startmeeting
+13:00 <AlicefBot> Meeting started at 13:00:22 UTC.  The chair is alicef.  Information about MeetBot at https://github.com/GKernelCI/Gmeetbot
+13:00 <AlicefBot> Available commands: action, commands, idea, info, link, nick
+13:00 <alicef> #progress
+13:01 <alicef> rollcall
+13:01 <alicef> !project kernel
+13:01 <alicef> !team kernel
+13:03 <alicef> Whissi, mpagano, kveremitz
+13:04 <kveremitz> o/
+13:04 <alicef> I forgot how to use willikins
+13:04 <alicef> !help
+13:04 <willikins> alicef: help topics: 10 core modules: auth, basics, config, filters, httputil, irclog, unicode, userdata, webservice, wordlist; 28 plugins: alias, autoop, autorejoin, bans, botsnack, bugzilla, chanserv, dns, gentoo, gentoofixup, greet, karma, keywords, linkbot, math, modes, nagios, nickrecover, nickserv, note, q, quote, remind, rot, time, topic, usermodes, weather; 46 plugins ignored: use help ignored plugins to see why; 4 plugins failed
+13:04 <willikins> to load: use help failed plugins to see why (help <topic> for more info)
+13:04 <sam_> !proj kernel
+13:04 <willikins> sam_: (kernel@gentoo.org) alicef, blueness, chainsaw, mpagano, whissi, zorry
+13:04 <sam_> :)
+13:04 <sam_> so closee
+13:04 <alicef> oh thaks
+13:04 <alicef> o/
+13:04 <sam_> hmm. a few members are not in the channel
+13:05 <alicef> sam_: are you checking the away status ?
+13:07 <alicef> going on they will check later
+13:07 <alicef> #topic GkernelCI
+13:08 <alicef> I have no updates on GKernelCI development
+13:09 <alicef> I opened a bug about GKernelCI repository for mirror GKernelCI on gitweb.gentoo.org
+13:09 <alicef> but still no action
+13:09 <sam_> (I don't think any are away atm)
+13:10 <alicef> and wrote a blog about Linux Conf AU 2021 presentation on GKernelCI https://www.miraclelinux.com/tech-blog/copy_of_Linux.conf.au_Gentoo_GKernelCI_Eng
+13:10 <alicef> #topic alicef
+13:11 <alicef> other than that I opened the bug about genpatches-misc for dividing genpatches-misc from linux-patches repository
+13:12 <alicef> And also request space for kernel on project web resources host https://projects.gentoo.org/
+13:13 <alicef> for storing meeting logs in the future
+13:15 <alicef> last is not so much kernel project related but I made genchu kernel
+13:15 <alicef> -> https://github.com/genchu/genchu_kernel
+13:16 <alicef> that's everything from my side
+13:16 <alicef> probably I should use ACTION instead of TOPICS ...
+13:17 <alicef> for keeping log of each task
+13:17 <alicef> #topic eapi7
+13:18 <alicef> whissi any update on the bug review ?
+13:20 <alicef> ok lets' skip this for now
+13:21 <alicef> kveremitz: sam_: do you have any topic to discuss?
+13:21 <sam_> all good here I think, thank you for asking :)
+13:21 <alicef> #topic open topics
+13:22 <alicef> sam_: thanks :)
+13:23 <alicef> #topic election
+13:23 <kveremitz> alicef: in a Teams call .. but sorta here
+13:24 <alicef> #ACTION alicef as been renewed as kernel lead
+13:24 * AlicefBot alicef as been renewed as kernel lead
+13:25 <alicef> #topic open topics
+13:25 <alicef> kveremitz: any topics to discuss ?
+13:27 <alicef> #topic active kernel bugs
+13:28 <alicef> If we have no other topics I think that we can close the meeting
+13:28 <alicef> any objections ?
+13:30 <alicef> #endmeeting
