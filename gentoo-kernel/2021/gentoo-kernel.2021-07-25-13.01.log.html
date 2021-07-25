@@ -1,0 +1,287 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>#gentoo-kernel log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+a {text-decoration:none;}
+a:hover {text-decoration:underline;}
+
+</style>
+
+</head>
+
+<body>
+<pre><a href="#l-1" name="l-1"><span class="tm">13:01</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a href="#l-2" name="l-2"><span class="tm">13:01</span></a><span class="nk"> &lt;AlicefBot&gt;</span> Meeting started at 13:01:41 UTC.  The chair is alicef.  Information about MeetBot at https://github.com/GKernelCI/Gmeetbot
+<a href="#l-3" name="l-3"><span class="tm">13:01</span></a><span class="nk"> &lt;AlicefBot&gt;</span> Available commands: action, commands, idea, info, link, nick
+<a href="#l-4" name="l-4"><span class="tm">13:02</span></a><span class="nk"> &lt;alicef&gt;</span> rollcall
+<a href="#l-5" name="l-5"><span class="tm">13:02</span></a><span class="nk"> &lt;alicef&gt;</span> !team kernel
+<a href="#l-6" name="l-6"><span class="tm">13:02</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">mpagano:</span> kveremitz Whissi
+<a href="#l-7" name="l-7"><span class="tm">13:03</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="topic">#topic </span><span class="topicline">rollcall</span>
+<a href="#l-8" name="l-8"><span class="tm">13:03</span></a><span class="nk"> &lt;alicef&gt;</span> please say hi if you are around
+<a href="#l-9" name="l-9"><span class="tm">13:06</span></a><span class="nk"> &lt;alicef&gt;</span> hi
+<a href="#l-10" name="l-10"><span class="tm">13:07</span></a><span class="nk"> &lt;alicef&gt;</span> anyone around ?
+<a href="#l-11" name="l-11"><span class="tm">13:08</span></a><span class="nk"> &lt;mgorny&gt;</span> i'm around ;-P
+<a name="l-12"></a><span class="tm">13:08 </span><span class="nka">* mgorny</span> <span class="ac">hides</span>
+<a href="#l-13" name="l-13"><span class="tm">13:09</span></a><span class="nk"> &lt;alicef&gt;</span> :)
+<a href="#l-14" name="l-14"><span class="tm">13:09</span></a><span class="nk"> &lt;alicef&gt;</span> is dinner time there?
+<a href="#l-15" name="l-15"><span class="tm">13:10</span></a><span class="nk"> &lt;montjoie&gt;</span> hi
+<a href="#l-16" name="l-16"><span class="tm">13:10</span></a><span class="nk"> &lt;mgorny&gt;</span> in EU? it's 3 PM, so some people eat around the time, yeah
+<a href="#l-17" name="l-17"><span class="tm">13:10</span></a><span class="nk"> &lt;alicef&gt;</span> hi montjoie :)
+<a href="#l-18" name="l-18"><span class="tm">13:10</span></a><span class="nk"> &lt;alicef&gt;</span> !time mgorny
+<a href="#l-19" name="l-19"><span class="tm">13:10</span></a><span class="nk"> &lt;willikins&gt;</span> <span class="hi">alicef:</span> Europe - Warsaw - Sun Jul 25 15:10 CEST
+<a href="#l-20" name="l-20"><span class="tm">13:11</span></a><span class="nk"> &lt;alicef&gt;</span> is night here after dinner time
+<a href="#l-21" name="l-21"><span class="tm">13:11</span></a><span class="nk"> &lt;alicef&gt;</span> but I didn't eat yet
+<a href="#l-22" name="l-22"><span class="tm">13:11</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">mpagano:</span> kveremitz  Whissi
+<a href="#l-23" name="l-23"><span class="tm">13:12</span></a><span class="nk"> &lt;alicef&gt;</span> !proj kernel
+<a href="#l-24" name="l-24"><span class="tm">13:12</span></a><span class="nk"> &lt;willikins&gt;</span> (kernel@gentoo.org) alicef, blueness, chainsaw, mpagano, whissi, zorry
+<a href="#l-25" name="l-25"><span class="tm">13:12</span></a><span class="nk"> &lt;alicef&gt;</span> oooh it worked
+<a href="#l-26" name="l-26"><span class="tm">13:12</span></a><span class="nk"> &lt;alicef&gt;</span> mgorny everything ok ?
+<a href="#l-27" name="l-27"><span class="tm">13:13</span></a><span class="nk"> &lt;mgorny&gt;</span> i suppose so
+<a href="#l-28" name="l-28"><span class="tm">13:13</span></a><span class="nk"> &lt;mgorny&gt;</span> you?
+<a href="#l-29" name="l-29"><span class="tm">13:13</span></a><span class="nk"> &lt;alicef&gt;</span> not bad :)
+<a href="#l-30" name="l-30"><span class="tm">13:13</span></a><span class="nk"> &lt;AlicefBot&gt;</span> News from kernel: 5.13.5: stable &lt;http://www.kernel.org/&gt;
+<a href="#l-31" name="l-31"><span class="tm">13:13</span></a><span class="nk"> &lt;AlicefBot&gt;</span> News from kernel: 5.10.53: longterm &lt;http://www.kernel.org/&gt;
+<a href="#l-32" name="l-32"><span class="tm">13:13</span></a><span class="nk"> &lt;AlicefBot&gt;</span> News from kernel: 5.4.135: longterm &lt;http://www.kernel.org/&gt;
+<a href="#l-33" name="l-33"><span class="tm">13:13</span></a><span class="nk"> &lt;alicef&gt;</span> eh ? as we do the meeting ...
+<a href="#l-34" name="l-34"><span class="tm">13:14</span></a><span class="nk"> &lt;alicef&gt;</span> I think we should wait at least mpagano
+<a href="#l-35" name="l-35"><span class="tm">13:14</span></a><span class="nk"> &lt;alicef&gt;</span> for the meeting to start
+<a href="#l-36" name="l-36"><span class="tm">13:15</span></a><span class="nk"> &lt;mgorny&gt;</span> <span class="hi">alicef:</span> eat something while you wait ;-)
+<a name="l-37"></a><span class="tm">13:16 </span><span class="nka">* alicef</span> <span class="ac">is opening a peanuts can</span>
+<a href="#l-38" name="l-38"><span class="tm">13:16</span></a><span class="nk"> &lt;alicef&gt;</span> I think we can at least start with gkernelci
+<a href="#l-39" name="l-39"><span class="tm">13:16</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="topic">#topic </span><span class="topicline">gkernelci</span>
+<a href="#l-40" name="l-40"><span class="tm">13:17</span></a><span class="nk"> &lt;alicef&gt;</span> not so much happened. I did some small code fixes and updated the kernel version
+<a href="#l-41" name="l-41"><span class="tm">13:17</span></a><span class="nk"> &lt;alicef&gt;</span> now is supporting 5.13 and next 5.14
+<a href="#l-42" name="l-42"><span class="tm">13:18</span></a><span class="nk"> &lt;alicef&gt;</span> and I requested a dedicated server as the compilation time is becoming a bootle neck
+<a href="#l-43" name="l-43"><span class="tm">13:18</span></a><span class="nk"> &lt;alicef&gt;</span> mgorny did you give a look a gkernelci ? do you have any opinion ?
+<a href="#l-44" name="l-44"><span class="tm">13:19</span></a><span class="nk"> &lt;mgorny&gt;</span> only a brief look at some point
+<a href="#l-45" name="l-45"><span class="tm">13:19</span></a><span class="nk"> &lt;mgorny&gt;</span> inspired me for src_test() in dist-kernel
+<a href="#l-46" name="l-46"><span class="tm">13:19</span></a><span class="nk"> &lt;alicef&gt;</span> is useless ? :/
+<a href="#l-47" name="l-47"><span class="tm">13:19</span></a><span class="nk"> &lt;alicef&gt;</span> oh nice :)
+<a href="#l-48" name="l-48"><span class="tm">13:19</span></a><span class="nk"> &lt;mgorny&gt;</span> at some point would be nice to deduplicate work
+<a href="#l-49" name="l-49"><span class="tm">13:19</span></a><span class="nk"> &lt;mgorny&gt;</span> since i need to build+test 5.4/5.10/5.13 anyway for gentoo-kernel-bin
+<a href="#l-50" name="l-50"><span class="tm">13:20</span></a><span class="nk"> &lt;mgorny&gt;</span> takes around 20 min per kernel version per arch on my pc
+<a href="#l-51" name="l-51"><span class="tm">13:20</span></a><span class="nk"> &lt;alicef&gt;</span> are you doing also kselftest ?
+<a href="#l-52" name="l-52"><span class="tm">13:22</span></a><span class="nk"> &lt;alicef&gt;</span> are you thinking that by building and testing gentoo-kernel-bin gkernelci become useless ?
+<a href="#l-53" name="l-53"><span class="tm">13:22</span></a><span class="nk"> &lt;alicef&gt;</span> gentoo-sources need anyway to be tested before the release
+<a href="#l-54" name="l-54"><span class="tm">13:22</span></a><span class="nk"> &lt;alicef&gt;</span> and that is what is currently doing gkernelci
+<a href="#l-55" name="l-55"><span class="tm">13:23</span></a><span class="nk"> &lt;mgorny&gt;</span> no, not yet
+<a href="#l-56" name="l-56"><span class="tm">13:23</span></a><span class="nk"> &lt;alicef&gt;</span> that not yet is scary :P
+<a href="#l-57" name="l-57"><span class="tm">13:23</span></a><span class="nk"> &lt;mgorny&gt;</span> i need to investigate kselftest at some point
+<a href="#l-58" name="l-58"><span class="tm">13:23</span></a><span class="nk"> &lt;mgorny&gt;</span> (i was replying wrt kselftest)
+<a href="#l-59" name="l-59"><span class="tm">13:24</span></a><span class="nk"> &lt;alicef&gt;</span> ah is about kselftest :)
+<a href="#l-60" name="l-60"><span class="tm">13:24</span></a><span class="nk"> &lt;alicef&gt;</span> what do you mean by deduplicate work ?
+<a href="#l-61" name="l-61"><span class="tm">13:25</span></a><span class="nk"> &lt;mgorny&gt;</span> not sure yet
+<a href="#l-62" name="l-62"><span class="tm">13:25</span></a><span class="nk"> &lt;mgorny&gt;</span> would be nice not to do the same thing twice
+<a href="#l-63" name="l-63"><span class="tm">13:25</span></a><span class="nk"> &lt;alicef&gt;</span> yes but we are still releasing two packages
+<a href="#l-64" name="l-64"><span class="tm">13:25</span></a><span class="nk"> &lt;mgorny&gt;</span> either make gkernelci build gentoo-kernel images, or improve src_test() to make it equiv to gkernelci
+<a href="#l-65" name="l-65"><span class="tm">13:26</span></a><span class="nk"> &lt;alicef&gt;</span> also if you improve src_test() we need still to test each linux-patches commit
+<a href="#l-66" name="l-66"><span class="tm">13:26</span></a><span class="nk"> &lt;mgorny&gt;</span> how does gkernelci test new kernel versions? do you start it before pushing gentoo-sources or after?
+<a href="#l-67" name="l-67"><span class="tm">13:26</span></a><span class="nk"> &lt;alicef&gt;</span> is doing both
+<a href="#l-68" name="l-68"><span class="tm">13:27</span></a><span class="nk"> &lt;mgorny&gt;</span> ah, ok
+<a href="#l-69" name="l-69"><span class="tm">13:27</span></a><span class="nk"> &lt;alicef&gt;</span> but the test of pushing gentoo-sources is still not yet finished
+<a href="#l-70" name="l-70"><span class="tm">13:27</span></a><span class="nk"> &lt;mgorny&gt;</span> i suppose no good solution then yet
+<a href="#l-71" name="l-71"><span class="tm">13:27</span></a><span class="nk"> &lt;alicef&gt;</span> is actually testing everything under sys-kernel/*
+<a href="#l-72" name="l-72"><span class="tm">13:28</span></a><span class="nk"> &lt;alicef&gt;</span> but currently is just using ebuild
+<a href="#l-73" name="l-73"><span class="tm">13:28</span></a><span class="nk"> &lt;mgorny&gt;</span> we would find it helpful to have access to new releases of genpatches early though
+<a href="#l-74" name="l-74"><span class="tm">13:28</span></a><span class="nk"> &lt;mgorny&gt;</span> so we could start testing and building gentoo-kernel before gentoo-sources are pushed
+<a href="#l-75" name="l-75"><span class="tm">13:29</span></a><span class="nk"> &lt;alicef&gt;</span> when gentpatches are released we are making also gentoo-sources
+<a href="#l-76" name="l-76"><span class="tm">13:29</span></a><span class="nk"> &lt;alicef&gt;</span> usually at same time
+<a href="#l-77" name="l-77"><span class="tm">13:29</span></a><span class="nk"> &lt;mgorny&gt;</span> ah, ok
+<a href="#l-78" name="l-78"><span class="tm">13:30</span></a><span class="nk"> &lt;mgorny&gt;</span> i thought you were testing it first
+<a href="#l-79" name="l-79"><span class="tm">13:30</span></a><span class="nk"> &lt;alicef&gt;</span> gkernelci is testing each commit on linux-patches
+<a href="#l-80" name="l-80"><span class="tm">13:30</span></a><span class="nk"> &lt;mgorny&gt;</span> ah
+<a href="#l-81" name="l-81"><span class="tm">13:30</span></a><span class="nk"> &lt;alicef&gt;</span> linux-patches get build and tested
+<a href="#l-82" name="l-82"><span class="tm">13:30</span></a><span class="nk"> &lt;alicef&gt;</span> if they work we make genpatches
+<a href="#l-83" name="l-83"><span class="tm">13:30</span></a><span class="nk"> &lt;alicef&gt;</span> than gentoo-sources
+<a href="#l-84" name="l-84"><span class="tm">13:30</span></a><span class="nk"> &lt;mgorny&gt;</span> is it doing every single commit or skipping commits if many happen at once?
+<a href="#l-85" name="l-85"><span class="tm">13:31</span></a><span class="nk"> &lt;alicef&gt;</span> becouse in some cases we broke linux-patches
+<a href="#l-86" name="l-86"><span class="tm">13:31</span></a><span class="nk"> &lt;alicef&gt;</span> like I see few mangled commit but it happened
+<a href="#l-87" name="l-87"><span class="tm">13:31</span></a><span class="nk"> &lt;alicef&gt;</span> and gkernelci can catch such things
+<a href="#l-88" name="l-88"><span class="tm">13:32</span></a><span class="nk"> &lt;alicef&gt;</span> I think is doing each commit
+<a href="#l-89" name="l-89"><span class="tm">13:33</span></a><span class="nk"> &lt;alicef&gt;</span> is rare to have many commits happen at once
+<a href="#l-90" name="l-90"><span class="tm">13:33</span></a><span class="nk"> &lt;mgorny&gt;</span> btw shouldn't the topic be updated for 5.12 EOL?
+<a href="#l-91" name="l-91"><span class="tm">13:34</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">mgorny:</span> you are right !
+<a href="#l-92" name="l-92"><span class="tm">13:34</span></a><span class="nk"> &lt;alicef&gt;</span> but I have no idea how to change a topic during a meeting. bit worried that it mangle the bot
+<a href="#l-93" name="l-93"><span class="tm">13:34</span></a><span class="nk"> &lt;alicef&gt;</span> :P
+<a href="#l-94" name="l-94"><span class="tm">13:36</span></a><span class="nk"> &lt;mgorny&gt;</span> there's one more suggestion from us
+<a href="#l-95" name="l-95"><span class="tm">13:36</span></a><span class="nk"> &lt;mgorny&gt;</span> we think it would be better if genpatches version carried the full kernel version
+<a href="#l-96" name="l-96"><span class="tm">13:36</span></a><span class="nk"> &lt;mgorny&gt;</span> i.e. instead of genpatches version 22 correspoinding to 5.12.19
+<a href="#l-97" name="l-97"><span class="tm">13:36</span></a><span class="nk"> &lt;mgorny&gt;</span> it would be version 19
+<a href="#l-98" name="l-98"><span class="tm">13:36</span></a><span class="nk"> &lt;mgorny&gt;</span> and then 19.1, 19.2 etc. if need be
+<a href="#l-99" name="l-99"><span class="tm">13:37</span></a><span class="nk"> &lt;mgorny&gt;</span> right now it's hard to guess which genpatches version corresponds to which kernel version
+<a href="#l-100" name="l-100"><span class="tm">13:37</span></a><span class="nk"> &lt;alicef&gt;</span> I think in this case deduplicate work is not a problem. maybe src_test could keep do something that can help the user testing the kernel? and GkernelCI can keep working on testing the kernel on the developer part of things
+<a href="#l-101" name="l-101"><span class="tm">13:39</span></a><span class="nk"> &lt;alicef&gt;</span> I'm actually not sure how gentoo-kernel-bin work
+<a href="#l-102" name="l-102"><span class="tm">13:39</span></a><span class="nk"> &lt;alicef&gt;</span> as I'm honestly not using it
+<a href="#l-103" name="l-103"><span class="tm">13:40</span></a><span class="nk"> &lt;mgorny&gt;</span> it installs binary kernel + modules and compiles a minimal source tree needed to build kernel modules
+<a href="#l-104" name="l-104"><span class="tm">13:41</span></a><span class="nk"> &lt;alicef&gt;</span> and is using genpatches?
+<a href="#l-105" name="l-105"><span class="tm">13:41</span></a><span class="nk"> &lt;mgorny&gt;</span> yes
+<a href="#l-106" name="l-106"><span class="tm">13:42</span></a><span class="nk"> &lt;alicef&gt;</span> GENPATCHES_P=genpatches-${PV%.*}-$(( ${PV##*.} + 2 ))
+<a href="#l-107" name="l-107"><span class="tm">13:42</span></a><span class="nk"> &lt;alicef&gt;</span> I see
+<a href="#l-108" name="l-108"><span class="tm">13:43</span></a><span class="nk"> &lt;alicef&gt;</span> gentpatches is getting up with revision
+<a href="#l-109" name="l-109"><span class="tm">13:43</span></a><span class="nk"> &lt;alicef&gt;</span> so is not releted with the kernel version
+<a href="#l-110" name="l-110"><span class="tm">13:43</span></a><span class="nk"> &lt;mgorny&gt;</span> that's what i'd like to change
+<a href="#l-111" name="l-111"><span class="tm">13:43</span></a><span class="nk"> &lt;mgorny&gt;</span> there's rarely more than one revision for kernel version
+<a href="#l-112" name="l-112"><span class="tm">13:44</span></a><span class="nk"> &lt;mgorny&gt;</span> and it would be convenient to have both versions in sync
+<a href="#l-113" name="l-113"><span class="tm">13:44</span></a><span class="nk"> &lt;alicef&gt;</span> for example if we have gentoo-sources-5.19.10-r2 genpatches will be probably something like 12
+<a href="#l-114" name="l-114"><span class="tm">13:44</span></a><span class="nk"> &lt;alicef&gt;</span> as we have genpatches for 10 10-r1 e 10-r2
+<a href="#l-115" name="l-115"><span class="tm">13:44</span></a><span class="nk"> &lt;mgorny&gt;</span> and i'd like to see instead genpatches 10-r2 or sth like that
+<a href="#l-116" name="l-116"><span class="tm">13:46</span></a><span class="nk"> &lt;alicef&gt;</span> that's interesting
+<a href="#l-117" name="l-117"><span class="tm">13:47</span></a><span class="nk"> &lt;alicef&gt;</span> we still need the opinion of mpagano
+<a href="#l-118" name="l-118"><span class="tm">13:47</span></a><span class="nk"> &lt;mgorny&gt;</span> sure
+<a href="#l-119" name="l-119"><span class="tm">13:47</span></a><span class="nk"> &lt;alicef&gt;</span> and I think bumping genpatches with kernel version is not so straight forward as doing
+<a href="#l-120" name="l-120"><span class="tm">13:47</span></a><span class="nk"> &lt;alicef&gt;</span> n+1
+<a href="#l-121" name="l-121"><span class="tm">13:48</span></a><span class="nk"> &lt;alicef&gt;</span> we also go out of the gkernel topic :P
+<a href="#l-122" name="l-122"><span class="tm">13:48</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="topic">#topic </span><span class="topicline">deblob</span>
+<a href="#l-123" name="l-123"><span class="tm">13:49</span></a><span class="nk"> &lt;mgorny&gt;</span> i think the newest deblob patch is good
+<a href="#l-124" name="l-124"><span class="tm">13:49</span></a><span class="nk"> &lt;alicef&gt;</span> about deblob I think we already had a discussion on the mailing list :)
+<a href="#l-125" name="l-125"><span class="tm">13:49</span></a><span class="nk"> &lt;alicef&gt;</span> mgorny thanks
+<a href="#l-126" name="l-126"><span class="tm">13:50</span></a><span class="nk"> &lt;alicef&gt;</span> I don't think we need furter discussion
+<a href="#l-127" name="l-127"><span class="tm">13:51</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="cmd">#kernel </span><span class="cmdline">eapi mpagano whissi</span>
+<a href="#l-128" name="l-128"><span class="tm">13:51</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="topic">#topic </span><span class="topicline">kernel eclass eapi mpagano whissi</span>
+<a href="#l-129" name="l-129"><span class="tm">13:51</span></a><span class="nk"> &lt;alicef&gt;</span> about kernel eapi I see mpagano that update the kernel eclass to eapi 7 and 8
+<a href="#l-130" name="l-130"><span class="tm">13:51</span></a><span class="nk"> &lt;alicef&gt;</span> still gentoo-sources are eapi 7
+<a href="#l-131" name="l-131"><span class="tm">13:52</span></a><span class="nk"> &lt;alicef&gt;</span> but I think we can alrady start to move it to eapi 8
+<a href="#l-132" name="l-132"><span class="tm">13:52</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="topic">#topic </span><span class="topicline">mgorny points</span>
+<a href="#l-133" name="l-133"><span class="tm">13:53</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">mgorny:</span> if you have any other topic :)
+<a href="#l-134" name="l-134"><span class="tm">13:53</span></a><span class="nk"> &lt;alicef&gt;</span> but would still need mpagano opinion also
+<a href="#l-135" name="l-135"><span class="tm">13:54</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">montjoie:</span> anything to add about gkernelci ?
+<a href="#l-136" name="l-136"><span class="tm">13:55</span></a><span class="nk"> &lt;alicef&gt;</span> 5
+<a href="#l-137" name="l-137"><span class="tm">13:56</span></a><span class="nk"> &lt;alicef&gt;</span> 4
+<a href="#l-138" name="l-138"><span class="tm">13:56</span></a><span class="nk"> &lt;alicef&gt;</span> 3
+<a href="#l-139" name="l-139"><span class="tm">13:56</span></a><span class="nk"> &lt;alicef&gt;</span> 2
+<a href="#l-140" name="l-140"><span class="tm">13:56</span></a><span class="nk"> &lt;mgorny&gt;</span> hmm
+<a href="#l-141" name="l-141"><span class="tm">13:56</span></a><span class="nk"> &lt;mgorny&gt;</span> a rough idea that we could consider 'restarting' or merging patches in genpatches
+<a href="#l-142" name="l-142"><span class="tm">13:57</span></a><span class="nk"> &lt;mgorny&gt;</span> e.g. 4.4 series has 276 patches to bring the kernel from 4.4 to 4.4.276
+<a href="#l-143" name="l-143"><span class="tm">13:57</span></a><span class="nk"> &lt;mgorny&gt;</span> applying that many patches is slow, and they often replace one another
+<a href="#l-144" name="l-144"><span class="tm">13:58</span></a><span class="nk"> &lt;alicef&gt;</span> other distribution are usually keeping kernel sources branches and bumping that
+<a href="#l-145" name="l-145"><span class="tm">13:59</span></a><span class="nk"> &lt;mgorny&gt;</span> i think it would be more optimal to periodically merge them and make a single patch that bumps e.g. from 4.4 to 4.4.250, and then handle the rest via small patches
+<a href="#l-146" name="l-146"><span class="tm">13:59</span></a><span class="nk"> &lt;alicef&gt;</span> but is actually much more slow to keep all the kernel source code
+<a href="#l-147" name="l-147"><span class="tm">13:59</span></a><span class="nk"> &lt;alicef&gt;</span> like a script doing the periodical merge ?
+<a href="#l-148" name="l-148"><span class="tm">14:00</span></a><span class="nk"> &lt;mgorny&gt;</span> or modification to how genpatches are generated
+<a href="#l-149" name="l-149"><span class="tm">14:00</span></a><span class="nk"> &lt;alicef&gt;</span> the interesting that of keeping all patch separated is that if there is a security issue in one of kernel increment is much more fast to look for it
+<a href="#l-150" name="l-150"><span class="tm">14:01</span></a><span class="nk"> &lt;alicef&gt;</span> as we can know which patch got bumped on which kernel version
+<a href="#l-151" name="l-151"><span class="tm">14:01</span></a><span class="nk"> &lt;mgorny&gt;</span> i'm only talking of the 1* patches that backport upstream changes
+<a href="#l-152" name="l-152"><span class="tm">14:01</span></a><span class="nk"> &lt;mgorny&gt;</span> ./1000_linux-4.4.1.patch
+<a href="#l-153" name="l-153"><span class="tm">14:01</span></a><span class="nk"> &lt;mgorny&gt;</span> ./1001_linux-4.4.2.patch
+<a href="#l-154" name="l-154"><span class="tm">14:01</span></a><span class="nk"> &lt;mgorny&gt;</span> ./1002_linux-4.4.3.patch
+<a href="#l-155" name="l-155"><span class="tm">14:01</span></a><span class="nk"> &lt;mgorny&gt;</span> ./1003_linux-4.4.4.patch
+<a href="#l-156" name="l-156"><span class="tm">14:01</span></a><span class="nk"> &lt;mgorny&gt;</span> ./1004_linux-4.4.5.patch
+<a href="#l-157" name="l-157"><span class="tm">14:01</span></a><span class="nk"> &lt;mgorny&gt;</span> these ones
+<a href="#l-158" name="l-158"><span class="tm">14:01</span></a><span class="nk"> &lt;alicef&gt;</span> that's one of the pro that I can think about having it separated
+<a href="#l-159" name="l-159"><span class="tm">14:01</span></a><span class="nk"> &lt;alicef&gt;</span> yes but if for example
+<a href="#l-160" name="l-160"><span class="tm">14:02</span></a><span class="nk"> &lt;alicef&gt;</span> linux 4.4.4 have a security issue in one of the patch
+<a href="#l-161" name="l-161"><span class="tm">14:03</span></a><span class="nk"> &lt;alicef&gt;</span> sorry
+<a href="#l-162" name="l-162"><span class="tm">14:04</span></a><span class="nk"> &lt;alicef&gt;</span> I'm just think that having separate patches make more easy to search things
+<a href="#l-163" name="l-163"><span class="tm">14:04</span></a><span class="nk"> &lt;alicef&gt;</span> but is a valid point
+<a href="#l-164" name="l-164"><span class="tm">14:05</span></a><span class="nk"> &lt;alicef&gt;</span> do you think of any other benefit other than just make apply more fast ?
+<a href="#l-165" name="l-165"><span class="tm">14:05</span></a><span class="nk"> &lt;mgorny&gt;</span> smaller genpatches archive probably
+<a href="#l-166" name="l-166"><span class="tm">14:05</span></a><span class="nk"> &lt;alicef&gt;</span> I think apply last just few seconds currently
+<a href="#l-167" name="l-167"><span class="tm">14:06</span></a><span class="nk"> &lt;mgorny&gt;</span> around 10 seconds on tmpfs, i guess
+<a href="#l-168" name="l-168"><span class="tm">14:06</span></a><span class="nk"> &lt;mgorny&gt;</span> 10-15
+<a href="#l-169" name="l-169"><span class="tm">14:06</span></a><span class="nk"> &lt;mgorny&gt;</span> would be easier to measure if they were applied during src_prepare
+<a href="#l-170" name="l-170"><span class="tm">14:06</span></a><span class="nk"> &lt;alicef&gt;</span> we can add this and genpatches following genkernel version as topic for the next meeting when we have also mpagano  :)
+<a href="#l-171" name="l-171"><span class="tm">14:07</span></a><span class="nk"> &lt;alicef&gt;</span> as mpagano have a much better vision on genpatches future
+<a href="#l-172" name="l-172"><span class="tm">14:08</span></a><span class="nk"> &lt;alicef&gt;</span> genpatches following kernel version and merging kernel incremental patches
+<a href="#l-173" name="l-173"><span class="tm">14:09</span></a><span class="nk"> &lt;alicef&gt;</span> I think the bot can take note
+<a href="#l-174" name="l-174"><span class="tm">14:09</span></a><span class="nk"> &lt;mgorny&gt;</span> <span class="hi">alicef:</span> if i combine the first 200 patches into one diff, genpatches goes from 4.1M to 1.2M
+<a href="#l-175" name="l-175"><span class="tm">14:09</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="cmd">#note </span><span class="cmdline">genpatches following kernel version and merging kernel incremental patches</span>
+<a href="#l-176" name="l-176"><span class="tm">14:10</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="cmd">#IDEA </span><span class="cmdline">genpatches following kernel version and merging kernel incremental patches</span>
+<a href="#l-177" name="l-177"><span class="tm">14:10</span></a><span class="nk"> &lt;montjoie&gt;</span> <span class="hi">alicef:</span> I have some patch to add to gkernelci, mostly adding "native build" and a way to configure workers via yaml
+<a href="#l-178" name="l-178"><span class="tm">14:10</span></a><span class="nk"> &lt;montjoie&gt;</span> they are aleady done, but I need to polish them
+<a href="#l-179" name="l-179"><span class="tm">14:10</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="cmd">#idea </span><span class="cmdline">montjoie have patch to add to gkernelci, mostly adding "native build" and a way to configure workers via yaml</span>
+<a href="#l-180" name="l-180"><span class="tm">14:11</span></a><span class="nk"> &lt;alicef&gt;</span> nice !
+<a href="#l-181" name="l-181"><span class="tm">14:11</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">mgorny:</span> that's a nice achivement :)
+<a href="#l-182" name="l-182"><span class="tm">14:12</span></a><span class="nk"> &lt;alicef&gt;</span> let's ask mpagano opinion on the next meeting
+<a href="#l-183" name="l-183"><span class="tm">14:13</span></a><span class="nk"> &lt;alicef&gt;</span> wow configure workers via yaml would be really useful
+<a href="#l-184" name="l-184"><span class="tm">14:13</span></a><span class="nk"> &lt;alicef&gt;</span> still we need to found a way for having only one http server :/
+<a href="#l-185" name="l-185"><span class="tm">14:14</span></a><span class="nk"> &lt;montjoie&gt;</span> <span class="hi">alicef:</span> the major need is to have worker list + pass in one central file AND to permit to choose per worker which arch/toolchain to build
+<a href="#l-186" name="l-186"><span class="tm">14:14</span></a><span class="nk"> &lt;montjoie&gt;</span> for example native build for non-x86 is cpu hungry
+<a href="#l-187" name="l-187"><span class="tm">14:18</span></a><span class="nk"> &lt;alicef&gt;</span> I see
+<a href="#l-188" name="l-188"><span class="tm">14:18</span></a><span class="nk"> &lt;alicef&gt;</span> do you have any draft code ?
+<a href="#l-189" name="l-189"><span class="tm">14:19</span></a><span class="nk"> &lt;alicef&gt;</span> if you have something you should send the pull request so I can review and help out
+<a href="#l-190" name="l-190"><span class="tm">14:20</span></a><span class="nk"> &lt;alicef&gt;</span> just write draft in the title so I know is not finished yet
+<a href="#l-191" name="l-191"><span class="tm">14:21</span></a><span class="nk"> &lt;alicef&gt;</span> any other topics ?
+<a href="#l-192" name="l-192"><span class="tm">14:21</span></a><span class="nk"> &lt;alicef&gt;</span> 5
+<a href="#l-193" name="l-193"><span class="tm">14:21</span></a><span class="nk"> &lt;alicef&gt;</span> 4
+<a href="#l-194" name="l-194"><span class="tm">14:21</span></a><span class="nk"> &lt;alicef&gt;</span> 3
+<a href="#l-195" name="l-195"><span class="tm">14:22</span></a><span class="nk"> &lt;alicef&gt;</span> 2
+<a href="#l-196" name="l-196"><span class="tm">14:22</span></a><span class="nk"> &lt;alicef&gt;</span> 1
+<a href="#l-197" name="l-197"><span class="tm">14:22</span></a><span class="nk"> &lt;alicef&gt;</span> thanks mgorny
+<a href="#l-198" name="l-198"><span class="tm">14:22</span></a><span class="nk"> &lt;alicef&gt;</span> thanks montjoie
+<a href="#l-199" name="l-199"><span class="tm">14:23</span></a><span class="nk"> &lt;juippis&gt;</span> <span class="hi">alicef:</span> I have!
+<a href="#l-200" name="l-200"><span class="tm">14:23</span></a><span class="nk"> &lt;alicef&gt;</span> is already 23 minutes over let's close the meeting
+<a href="#l-201" name="l-201"><span class="tm">14:23</span></a><span class="nk"> &lt;juippis&gt;</span> it's not meeting related
+<a href="#l-202" name="l-202"><span class="tm">14:23</span></a><span class="nk"> &lt;alicef&gt;</span> juippis yes
+<a href="#l-203" name="l-203"><span class="tm">14:23</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="topic">#topic </span><span class="topicline">open</span>
+<a href="#l-204" name="l-204"><span class="tm">14:24</span></a><span class="nk"> &lt;juippis&gt;</span> but since you're around, where did we left off with gkernelci github pr support?
+<a href="#l-205" name="l-205"><span class="tm">14:24</span></a><span class="nk"> &lt;juippis&gt;</span> since mgorny manages the gentoo github if there was some restriction from that side
+<a href="#l-206" name="l-206"><span class="tm">14:24</span></a><span class="nk"> &lt;alicef&gt;</span> right
+<a href="#l-207" name="l-207"><span class="tm">14:24</span></a><span class="nk"> &lt;juippis&gt;</span> now'd be a good time to talk about it
+<a href="#l-208" name="l-208"><span class="tm">14:24</span></a><span class="nk"> &lt;alicef&gt;</span> we solved that. I can now see the pr code from github
+<a href="#l-209" name="l-209"><span class="tm">14:25</span></a><span class="nk"> &lt;juippis&gt;</span> I tested it works on sys-kernel* but not on any other PRs
+<a href="#l-210" name="l-210"><span class="tm">14:25</span></a><span class="nk"> &lt;juippis&gt;</span> for regular packages
+<a href="#l-211" name="l-211"><span class="tm">14:25</span></a><span class="nk"> &lt;juippis&gt;</span> does the build server catch the request with the gkernelci label, or does it match the sys-kernel/*
+<a href="#l-212" name="l-212"><span class="tm">14:25</span></a><span class="nk"> &lt;alicef&gt;</span> yes is still not enabled for regular packages
+<a href="#l-213" name="l-213"><span class="tm">14:26</span></a><span class="nk"> &lt;alicef&gt;</span> currently the server is overloaded even for sys-kernel/*
+<a href="#l-214" name="l-214"><span class="tm">14:26</span></a><span class="nk"> &lt;juippis&gt;</span> can we enable it for regular packages with a custom label? Like gkernelci
+<a href="#l-215" name="l-215"><span class="tm">14:26</span></a><span class="nk"> &lt;juippis&gt;</span> ah
+<a href="#l-216" name="l-216"><span class="tm">14:26</span></a><span class="nk"> &lt;alicef&gt;</span> that's why I requested a dedicated machine
+<a href="#l-217" name="l-217"><span class="tm">14:26</span></a><span class="nk"> &lt;juippis&gt;</span> yes, I don't want it to test everything automatically ever. It'd be requested through a github label
+<a href="#l-218" name="l-218"><span class="tm">14:26</span></a><span class="nk"> &lt;alicef&gt;</span> sorry I have still have to work on the custom label script
+<a href="#l-219" name="l-219"><span class="tm">14:26</span></a><span class="nk"> &lt;juippis&gt;</span> that only the devs can apply
+<a href="#l-220" name="l-220"><span class="tm">14:27</span></a><span class="nk"> &lt;alicef&gt;</span> I checked it few weeks ago but I have made no progress yet
+<a href="#l-221" name="l-221"><span class="tm">14:27</span></a><span class="nk"> &lt;juippis&gt;</span> okay, it's good to know where we're at currently!
+<a href="#l-222" name="l-222"><span class="tm">14:27</span></a><span class="nk"> &lt;alicef&gt;</span> yes
+<a href="#l-223" name="l-223"><span class="tm">14:27</span></a><span class="nk"> &lt;alicef&gt;</span> gkernelci is getting each label for each pull request
+<a href="#l-224" name="l-224"><span class="tm">14:28</span></a><span class="nk"> &lt;alicef&gt;</span> currently
+<a href="#l-225" name="l-225"><span class="tm">14:28</span></a><span class="nk"> &lt;alicef&gt;</span> so gkernelci know when the gkernelci label get activated and disabled
+<a href="#l-226" name="l-226"><span class="tm">14:29</span></a><span class="nk"> &lt;alicef&gt;</span> I still need to find a way to link that to a build trigger action
+<a href="#l-227" name="l-227"><span class="tm">14:29</span></a><span class="nk"> &lt;alicef&gt;</span> I can give you the json code if you are interested
+<a href="#l-228" name="l-228"><span class="tm">14:29</span></a><span class="nk"> &lt;alicef&gt;</span> and point you to the python code related to the parsing
+<a href="#l-229" name="l-229"><span class="tm">14:30</span></a><span class="nk"> &lt;juippis&gt;</span> think I've seen them before but sure, doesn't hurt!
+<a href="#l-230" name="l-230"><span class="tm">14:31</span></a><span class="nk"> &lt;alicef&gt;</span> ok
+<a href="#l-231" name="l-231"><span class="tm">14:32</span></a><span class="nk"> &lt;alicef&gt;</span> still the current server is really slow
+<a href="#l-232" name="l-232"><span class="tm">14:32</span></a><span class="nk"> &lt;alicef&gt;</span> depend from the package it can take hour to finish :(
+<a href="#l-233" name="l-233"><span class="tm">14:33</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="hi">juippis:</span> can you give me some package that are you interested to see enabled ?
+<a href="#l-234" name="l-234"><span class="tm">14:33</span></a><span class="nk"> &lt;juippis&gt;</span> yeah, that's why I don't want to enable it automatically for every PR. Someone will troll and push 100 chromium update PRs
+<a href="#l-235" name="l-235"><span class="tm">14:33</span></a><span class="nk"> &lt;alicef&gt;</span> maybe I can start from that
+<a href="#l-236" name="l-236"><span class="tm">14:33</span></a><span class="nk"> &lt;juippis&gt;</span> just pick any unmerged PR from github :P
+<a href="#l-237" name="l-237"><span class="tm">14:33</span></a><span class="nk"> &lt;alicef&gt;</span> ok :P
+<a href="#l-238" name="l-238"><span class="tm">14:34</span></a><span class="nk"> &lt;juippis&gt;</span> https://github.com/gentoo/gentoo/pull/21784 something like this
+<a href="#l-239" name="l-239"><span class="tm">14:34</span></a><span class="nk"> &lt;alicef&gt;</span> juippis thanks
+<a href="#l-240" name="l-240"><span class="tm">14:34</span></a><span class="nk"> &lt;juippis&gt;</span> but I fear someone will merge that soon. I can / you can make some dummy PR with any m-n package version bump for example
+<a href="#l-241" name="l-241"><span class="tm">14:34</span></a><span class="nk"> &lt;juippis&gt;</span> or EAPI bump
+<a href="#l-242" name="l-242"><span class="tm">14:34</span></a><span class="nk"> &lt;juippis&gt;</span> to test
+<a href="#l-243" name="l-243"><span class="tm">14:35</span></a><span class="nk"> &lt;alicef&gt;</span> yes I will do
+<a href="#l-244" name="l-244"><span class="tm">14:35</span></a><span class="nk"> &lt;juippis&gt;</span> cheers \o
+<a href="#l-245" name="l-245"><span class="tm">14:35</span></a><span class="nk"> &lt;alicef&gt;</span> thanks for the idea
+<a href="#l-246" name="l-246"><span class="tm">14:36</span></a><span class="nk"> &lt;alicef&gt;</span> I will update the issue you open in few hours with what we did
+<a href="#l-247" name="l-247"><span class="tm">14:36</span></a><span class="nk"> &lt;alicef&gt;</span> any other topic?
+<a href="#l-248" name="l-248"><span class="tm">14:36</span></a><span class="nk"> &lt;alicef&gt;</span> 5
+<a href="#l-249" name="l-249"><span class="tm">14:36</span></a><span class="nk"> &lt;alicef&gt;</span> 4
+<a href="#l-250" name="l-250"><span class="tm">14:36</span></a><span class="nk"> &lt;alicef&gt;</span> 3
+<a href="#l-251" name="l-251"><span class="tm">14:36</span></a><span class="nk"> &lt;alicef&gt;</span> 2
+<a href="#l-252" name="l-252"><span class="tm">14:37</span></a><span class="nk"> &lt;alicef&gt;</span> 1
+<a href="#l-253" name="l-253"><span class="tm">14:37</span></a><span class="nk"> &lt;alicef&gt;</span> thanks juippis mgorny montjoie
+<a href="#l-254" name="l-254"><span class="tm">14:37</span></a><span class="nk"> &lt;alicef&gt;</span> if there are no other topic I will close the meeting
+<a href="#l-255" name="l-255"><span class="tm">14:38</span></a><span class="nk"> &lt;alicef&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body>
+</html>

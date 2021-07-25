@@ -1,0 +1,255 @@
+13:01 <alicef> #startmeeting
+13:01 <AlicefBot> Meeting started at 13:01:41 UTC.  The chair is alicef.  Information about MeetBot at https://github.com/GKernelCI/Gmeetbot
+13:01 <AlicefBot> Available commands: action, commands, idea, info, link, nick
+13:02 <alicef> rollcall
+13:02 <alicef> !team kernel
+13:02 <alicef> mpagano: kveremitz Whissi
+13:03 <alicef> #topic rollcall
+13:03 <alicef> please say hi if you are around
+13:06 <alicef> hi
+13:07 <alicef> anyone around ?
+13:08 <mgorny> i'm around ;-P
+13:08 * mgorny hides
+13:09 <alicef> :)
+13:09 <alicef> is dinner time there?
+13:10 <montjoie> hi
+13:10 <mgorny> in EU? it's 3 PM, so some people eat around the time, yeah
+13:10 <alicef> hi montjoie :)
+13:10 <alicef> !time mgorny
+13:10 <willikins> alicef: Europe - Warsaw - Sun Jul 25 15:10 CEST
+13:11 <alicef> is night here after dinner time
+13:11 <alicef> but I didn't eat yet
+13:11 <alicef> mpagano: kveremitz  Whissi
+13:12 <alicef> !proj kernel
+13:12 <willikins> (kernel@gentoo.org) alicef, blueness, chainsaw, mpagano, whissi, zorry
+13:12 <alicef> oooh it worked
+13:12 <alicef> mgorny everything ok ?
+13:13 <mgorny> i suppose so
+13:13 <mgorny> you?
+13:13 <alicef> not bad :)
+13:13 <AlicefBot> News from kernel: 5.13.5: stable <http://www.kernel.org/>
+13:13 <AlicefBot> News from kernel: 5.10.53: longterm <http://www.kernel.org/>
+13:13 <AlicefBot> News from kernel: 5.4.135: longterm <http://www.kernel.org/>
+13:13 <alicef> eh ? as we do the meeting ...
+13:14 <alicef> I think we should wait at least mpagano
+13:14 <alicef> for the meeting to start
+13:15 <mgorny> alicef: eat something while you wait ;-)
+13:16 * alicef is opening a peanuts can
+13:16 <alicef> I think we can at least start with gkernelci
+13:16 <alicef> #topic gkernelci
+13:17 <alicef> not so much happened. I did some small code fixes and updated the kernel version
+13:17 <alicef> now is supporting 5.13 and next 5.14
+13:18 <alicef> and I requested a dedicated server as the compilation time is becoming a bootle neck
+13:18 <alicef> mgorny did you give a look a gkernelci ? do you have any opinion ?
+13:19 <mgorny> only a brief look at some point
+13:19 <mgorny> inspired me for src_test() in dist-kernel
+13:19 <alicef> is useless ? :/
+13:19 <alicef> oh nice :)
+13:19 <mgorny> at some point would be nice to deduplicate work
+13:19 <mgorny> since i need to build+test 5.4/5.10/5.13 anyway for gentoo-kernel-bin
+13:20 <mgorny> takes around 20 min per kernel version per arch on my pc
+13:20 <alicef> are you doing also kselftest ?
+13:22 <alicef> are you thinking that by building and testing gentoo-kernel-bin gkernelci become useless ?
+13:22 <alicef> gentoo-sources need anyway to be tested before the release
+13:22 <alicef> and that is what is currently doing gkernelci
+13:23 <mgorny> no, not yet
+13:23 <alicef> that not yet is scary :P
+13:23 <mgorny> i need to investigate kselftest at some point
+13:23 <mgorny> (i was replying wrt kselftest)
+13:24 <alicef> ah is about kselftest :)
+13:24 <alicef> what do you mean by deduplicate work ?
+13:25 <mgorny> not sure yet
+13:25 <mgorny> would be nice not to do the same thing twice
+13:25 <alicef> yes but we are still releasing two packages
+13:25 <mgorny> either make gkernelci build gentoo-kernel images, or improve src_test() to make it equiv to gkernelci
+13:26 <alicef> also if you improve src_test() we need still to test each linux-patches commit
+13:26 <mgorny> how does gkernelci test new kernel versions? do you start it before pushing gentoo-sources or after?
+13:26 <alicef> is doing both
+13:27 <mgorny> ah, ok
+13:27 <alicef> but the test of pushing gentoo-sources is still not yet finished
+13:27 <mgorny> i suppose no good solution then yet
+13:27 <alicef> is actually testing everything under sys-kernel/*
+13:28 <alicef> but currently is just using ebuild
+13:28 <mgorny> we would find it helpful to have access to new releases of genpatches early though
+13:28 <mgorny> so we could start testing and building gentoo-kernel before gentoo-sources are pushed
+13:29 <alicef> when gentpatches are released we are making also gentoo-sources
+13:29 <alicef> usually at same time
+13:29 <mgorny> ah, ok
+13:30 <mgorny> i thought you were testing it first
+13:30 <alicef> gkernelci is testing each commit on linux-patches
+13:30 <mgorny> ah
+13:30 <alicef> linux-patches get build and tested
+13:30 <alicef> if they work we make genpatches
+13:30 <alicef> than gentoo-sources
+13:30 <mgorny> is it doing every single commit or skipping commits if many happen at once?
+13:31 <alicef> becouse in some cases we broke linux-patches
+13:31 <alicef> like I see few mangled commit but it happened
+13:31 <alicef> and gkernelci can catch such things
+13:32 <alicef> I think is doing each commit
+13:33 <alicef> is rare to have many commits happen at once
+13:33 <mgorny> btw shouldn't the topic be updated for 5.12 EOL?
+13:34 <alicef> mgorny: you are right !
+13:34 <alicef> but I have no idea how to change a topic during a meeting. bit worried that it mangle the bot
+13:34 <alicef> :P
+13:36 <mgorny> there's one more suggestion from us
+13:36 <mgorny> we think it would be better if genpatches version carried the full kernel version
+13:36 <mgorny> i.e. instead of genpatches version 22 correspoinding to 5.12.19
+13:36 <mgorny> it would be version 19
+13:36 <mgorny> and then 19.1, 19.2 etc. if need be
+13:37 <mgorny> right now it's hard to guess which genpatches version corresponds to which kernel version
+13:37 <alicef> I think in this case deduplicate work is not a problem. maybe src_test could keep do something that can help the user testing the kernel? and GkernelCI can keep working on testing the kernel on the developer part of things
+13:39 <alicef> I'm actually not sure how gentoo-kernel-bin work
+13:39 <alicef> as I'm honestly not using it
+13:40 <mgorny> it installs binary kernel + modules and compiles a minimal source tree needed to build kernel modules
+13:41 <alicef> and is using genpatches?
+13:41 <mgorny> yes
+13:42 <alicef> GENPATCHES_P=genpatches-${PV%.*}-$(( ${PV##*.} + 2 ))
+13:42 <alicef> I see
+13:43 <alicef> gentpatches is getting up with revision
+13:43 <alicef> so is not releted with the kernel version
+13:43 <mgorny> that's what i'd like to change
+13:43 <mgorny> there's rarely more than one revision for kernel version
+13:44 <mgorny> and it would be convenient to have both versions in sync
+13:44 <alicef> for example if we have gentoo-sources-5.19.10-r2 genpatches will be probably something like 12
+13:44 <alicef> as we have genpatches for 10 10-r1 e 10-r2
+13:44 <mgorny> and i'd like to see instead genpatches 10-r2 or sth like that
+13:46 <alicef> that's interesting
+13:47 <alicef> we still need the opinion of mpagano
+13:47 <mgorny> sure
+13:47 <alicef> and I think bumping genpatches with kernel version is not so straight forward as doing
+13:47 <alicef> n+1
+13:48 <alicef> we also go out of the gkernel topic :P
+13:48 <alicef> #topic deblob
+13:49 <mgorny> i think the newest deblob patch is good
+13:49 <alicef> about deblob I think we already had a discussion on the mailing list :)
+13:49 <alicef> mgorny thanks
+13:50 <alicef> I don't think we need furter discussion
+13:51 <alicef> #kernel eapi mpagano whissi
+13:51 <alicef> #topic kernel eclass eapi mpagano whissi
+13:51 <alicef> about kernel eapi I see mpagano that update the kernel eclass to eapi 7 and 8
+13:51 <alicef> still gentoo-sources are eapi 7
+13:52 <alicef> but I think we can alrady start to move it to eapi 8
+13:52 <alicef> #topic mgorny points
+13:53 <alicef> mgorny: if you have any other topic :)
+13:53 <alicef> but would still need mpagano opinion also
+13:54 <alicef> montjoie: anything to add about gkernelci ?
+13:55 <alicef> 5
+13:56 <alicef> 4
+13:56 <alicef> 3
+13:56 <alicef> 2
+13:56 <mgorny> hmm
+13:56 <mgorny> a rough idea that we could consider 'restarting' or merging patches in genpatches
+13:57 <mgorny> e.g. 4.4 series has 276 patches to bring the kernel from 4.4 to 4.4.276
+13:57 <mgorny> applying that many patches is slow, and they often replace one another
+13:58 <alicef> other distribution are usually keeping kernel sources branches and bumping that
+13:59 <mgorny> i think it would be more optimal to periodically merge them and make a single patch that bumps e.g. from 4.4 to 4.4.250, and then handle the rest via small patches
+13:59 <alicef> but is actually much more slow to keep all the kernel source code
+13:59 <alicef> like a script doing the periodical merge ?
+14:00 <mgorny> or modification to how genpatches are generated
+14:00 <alicef> the interesting that of keeping all patch separated is that if there is a security issue in one of kernel increment is much more fast to look for it
+14:01 <alicef> as we can know which patch got bumped on which kernel version
+14:01 <mgorny> i'm only talking of the 1* patches that backport upstream changes
+14:01 <mgorny> ./1000_linux-4.4.1.patch
+14:01 <mgorny> ./1001_linux-4.4.2.patch
+14:01 <mgorny> ./1002_linux-4.4.3.patch
+14:01 <mgorny> ./1003_linux-4.4.4.patch
+14:01 <mgorny> ./1004_linux-4.4.5.patch
+14:01 <mgorny> these ones
+14:01 <alicef> that's one of the pro that I can think about having it separated
+14:01 <alicef> yes but if for example
+14:02 <alicef> linux 4.4.4 have a security issue in one of the patch
+14:03 <alicef> sorry
+14:04 <alicef> I'm just think that having separate patches make more easy to search things
+14:04 <alicef> but is a valid point
+14:05 <alicef> do you think of any other benefit other than just make apply more fast ?
+14:05 <mgorny> smaller genpatches archive probably
+14:05 <alicef> I think apply last just few seconds currently
+14:06 <mgorny> around 10 seconds on tmpfs, i guess
+14:06 <mgorny> 10-15
+14:06 <mgorny> would be easier to measure if they were applied during src_prepare
+14:06 <alicef> we can add this and genpatches following genkernel version as topic for the next meeting when we have also mpagano  :)
+14:07 <alicef> as mpagano have a much better vision on genpatches future
+14:08 <alicef> genpatches following kernel version and merging kernel incremental patches
+14:09 <alicef> I think the bot can take note
+14:09 <mgorny> alicef: if i combine the first 200 patches into one diff, genpatches goes from 4.1M to 1.2M
+14:09 <alicef> #note genpatches following kernel version and merging kernel incremental patches
+14:10 <alicef> #IDEA genpatches following kernel version and merging kernel incremental patches
+14:10 <montjoie> alicef: I have some patch to add to gkernelci, mostly adding "native build" and a way to configure workers via yaml
+14:10 <montjoie> they are aleady done, but I need to polish them
+14:10 <alicef> #idea montjoie have patch to add to gkernelci, mostly adding "native build" and a way to configure workers via yaml
+14:11 <alicef> nice !
+14:11 <alicef> mgorny: that's a nice achivement :)
+14:12 <alicef> let's ask mpagano opinion on the next meeting
+14:13 <alicef> wow configure workers via yaml would be really useful
+14:13 <alicef> still we need to found a way for having only one http server :/
+14:14 <montjoie> alicef: the major need is to have worker list + pass in one central file AND to permit to choose per worker which arch/toolchain to build
+14:14 <montjoie> for example native build for non-x86 is cpu hungry
+14:18 <alicef> I see
+14:18 <alicef> do you have any draft code ?
+14:19 <alicef> if you have something you should send the pull request so I can review and help out
+14:20 <alicef> just write draft in the title so I know is not finished yet
+14:21 <alicef> any other topics ?
+14:21 <alicef> 5
+14:21 <alicef> 4
+14:21 <alicef> 3
+14:22 <alicef> 2
+14:22 <alicef> 1
+14:22 <alicef> thanks mgorny
+14:22 <alicef> thanks montjoie
+14:23 <juippis> alicef: I have!
+14:23 <alicef> is already 23 minutes over let's close the meeting
+14:23 <juippis> it's not meeting related
+14:23 <alicef> juippis yes
+14:23 <alicef> #topic open
+14:24 <juippis> but since you're around, where did we left off with gkernelci github pr support?
+14:24 <juippis> since mgorny manages the gentoo github if there was some restriction from that side
+14:24 <alicef> right
+14:24 <juippis> now'd be a good time to talk about it
+14:24 <alicef> we solved that. I can now see the pr code from github
+14:25 <juippis> I tested it works on sys-kernel* but not on any other PRs
+14:25 <juippis> for regular packages
+14:25 <juippis> does the build server catch the request with the gkernelci label, or does it match the sys-kernel/*
+14:25 <alicef> yes is still not enabled for regular packages
+14:26 <alicef> currently the server is overloaded even for sys-kernel/*
+14:26 <juippis> can we enable it for regular packages with a custom label? Like gkernelci
+14:26 <juippis> ah
+14:26 <alicef> that's why I requested a dedicated machine
+14:26 <juippis> yes, I don't want it to test everything automatically ever. It'd be requested through a github label
+14:26 <alicef> sorry I have still have to work on the custom label script
+14:26 <juippis> that only the devs can apply
+14:27 <alicef> I checked it few weeks ago but I have made no progress yet
+14:27 <juippis> okay, it's good to know where we're at currently!
+14:27 <alicef> yes
+14:27 <alicef> gkernelci is getting each label for each pull request
+14:28 <alicef> currently
+14:28 <alicef> so gkernelci know when the gkernelci label get activated and disabled
+14:29 <alicef> I still need to find a way to link that to a build trigger action
+14:29 <alicef> I can give you the json code if you are interested
+14:29 <alicef> and point you to the python code related to the parsing
+14:30 <juippis> think I've seen them before but sure, doesn't hurt!
+14:31 <alicef> ok
+14:32 <alicef> still the current server is really slow
+14:32 <alicef> depend from the package it can take hour to finish :(
+14:33 <alicef> juippis: can you give me some package that are you interested to see enabled ?
+14:33 <juippis> yeah, that's why I don't want to enable it automatically for every PR. Someone will troll and push 100 chromium update PRs
+14:33 <alicef> maybe I can start from that
+14:33 <juippis> just pick any unmerged PR from github :P
+14:33 <alicef> ok :P
+14:34 <juippis> https://github.com/gentoo/gentoo/pull/21784 something like this
+14:34 <alicef> juippis thanks
+14:34 <juippis> but I fear someone will merge that soon. I can / you can make some dummy PR with any m-n package version bump for example
+14:34 <juippis> or EAPI bump
+14:34 <juippis> to test
+14:35 <alicef> yes I will do
+14:35 <juippis> cheers \o
+14:35 <alicef> thanks for the idea
+14:36 <alicef> I will update the issue you open in few hours with what we did
+14:36 <alicef> any other topic?
+14:36 <alicef> 5
+14:36 <alicef> 4
+14:36 <alicef> 3
+14:36 <alicef> 2
+14:37 <alicef> 1
+14:37 <alicef> thanks juippis mgorny montjoie
+14:37 <alicef> if there are no other topic I will close the meeting
+14:38 <alicef> #endmeeting
